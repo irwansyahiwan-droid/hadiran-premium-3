@@ -2954,7 +2954,7 @@ h+='<div class="jd-item jdb-item"><div class="jdb-av">'+peciAvatar()+'<span clas
 h+='</div></div>';
 }
 h+='<div class="sec-ttl">Transaksi Terakhir</div><div class="card"><div class="card-body" style="padding:10px 14px">';
-if(d.recentKas&&d.recentKas.length)d.recentKas.forEach(function(k){h+=kasRowHTML(k);});
+if(d.recentKas&&d.recentKas.length)d.recentKas.slice(0,10).forEach(function(k){h+=kasRowHTML(k);});
 else h+='<div class="empty"><div class="empty-d">Belum ada</div></div>';
 h+='</div></div>';
 document.getElementById('dashContent').innerHTML=h;
@@ -2990,8 +2990,8 @@ var h='<div style="text-align:right;padding:2px 0 10px"><button class="pdf-jadwa
 window._jdCache=data;
 data.forEach(function(j){
 var done=j.status==='Selesai';var sbA=j.sohibulBait.replace(/'/g,"\\'");
-h+='<div class="jd-item"><div class="jd-badge '+(done?'done':'')+'"><div class="jd-num">'+j.noTarikan+'</div><div class="jd-lbl">TARIKAN</div></div>'+
-'<div class="jd-info"><div class="jd-name">'+esc(j.sohibulBait)+'</div><div class="jd-tgl">'+fmtTgl(j.tanggal)+'</div></div>';
+h+='<div class="jd-item jdb-item'+(done?' jd-item-done':'')+'"><div class="jdb-av'+(done?' jdb-av-done':'')+'">'+peciAvatar()+'<span class="jdb-av-no">'+j.noTarikan+'</span></div>'+
+'<div class="jd-info"><div class="jd-name">'+esc(j.sohibulBait)+'</div><div class="jd-tgl">'+fmtTgl(j.tanggal)+(done?' · ✓ Selesai':'')+'</div></div>';
 if(!done){h+='<button class="btn btn-G btn-xs" onclick="mulaiAbsen('+j.noTarikan+',\''+j.tanggal+'\',\''+sbA+'\')">✅ Proses</button><button class="btn-edit-jd" onclick="editJadwal('+j.noTarikan+',\''+j.tanggal+'\',\''+sbA+'\')">✎</button>';}
 else{h+='<button class="btn-recalc" onclick="hitungUlang('+j.noTarikan+',\''+j.tanggal+'\',\''+sbA+'\')">↺ Hitung Ulang</button>';}
 h+='</div>';
@@ -28465,6 +28465,312 @@ html[data-theme="light"] body #bottomNav .ni.on .ni-lbl {
 [data-theme="dark"] html body .tal-act.tal-act-edit:hover {
   background: var(--surf3) !important;
   border-color: #64748B !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PREMIUM POLISH v9.5 — TARGETED FIXES (per user feedback round 4)
+   1. Bayar button — brighter vivid emerald
+   2. Hero chips (Saldo Aktif / Talangan / Setor KasRT) — sharper white
+   3. KPI cards (Anggota/Tarikan/Terjadwal) — colored top stripe + icon badge
+   4. Admin jadwal — peci avatar (jdb-av) styling
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. BUTTON BAYAR — brighter vivid emerald ──────────────────────── */
+html body .tal-act.tal-act-bayar {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #34D399 0%, #10B981 50%, #059669 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(4,120,87,.55) !important;
+  box-shadow:
+    0 6px 16px rgba(16,185,129,.42),
+    0 2px 4px rgba(4,120,87,.20),
+    0 1px 0 rgba(255,255,255,.55) inset,
+    0 -1px 0 rgba(4,120,87,.20) inset !important;
+  text-shadow: 0 1px 1px rgba(4,120,87,.40) !important;
+}
+html body .tal-act.tal-act-bayar:hover {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.25) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #10B981 0%, #059669 50%, #047857 100%) !important;
+  box-shadow:
+    0 8px 22px rgba(16,185,129,.50),
+    0 3px 6px rgba(4,120,87,.24),
+    0 1px 0 rgba(255,255,255,.55) inset !important;
+}
+
+/* ── 2. HERO CHIPS — Saldo Aktif / Talangan / Setor KasRT ──────────── */
+/* Each chip: more visible bg + brighter labels + bolder values */
+html body .hero .hero-chip,
+html[data-theme="light"] body .hero .hero-chip {
+  background: rgba(255,255,255,.16) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 14px !important;
+  padding: 10px 12px !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.18),
+    0 1px 0 rgba(255,255,255,.22) inset !important;
+  backdrop-filter: blur(6px) !important;
+}
+html body .hero .hero-chip .chip-lbl,
+html[data-theme="light"] body .hero .hero-chip .chip-lbl {
+  color: rgba(255,255,255,.92) !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .9px !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.28) !important;
+  opacity: 1 !important;
+}
+html body .hero .hero-chip .chip-val,
+html[data-theme="light"] body .hero .hero-chip .chip-val {
+  color: #FFFFFF !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.2px !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.32) !important;
+}
+/* Variant accents — brighter so they pop on dark hero */
+html body .hero .chip-green .chip-val { color: #BBF7D0 !important; }
+html body .hero .chip-red   .chip-val { color: #FECACA !important; }
+html body .hero .chip-blue  .chip-val { color: #BFDBFE !important; }
+
+html body .hero .hero-chip .chip-ic,
+html[data-theme="light"] body .hero .hero-chip .chip-ic {
+  font-size: 18px !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.30)) !important;
+}
+
+/* ── 3. KPI CARDS — colored top stripe + colored icon badge ────────── */
+
+/* Re-style sc cards: relative for stripe, padding adjustment for badge */
+html body .sc,
+html[data-theme="light"] body .sc {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 18px 12px 14px !important;
+}
+
+/* Top accent stripe per variant */
+html body .sc.b::before,
+html[data-theme="light"] body .sc.b::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #1D4ED8, #3B82F6) !important;
+}
+html body .sc.s::before,
+html[data-theme="light"] body .sc.s::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #B45309, #F59E0B) !important;
+}
+html body .sc.g::before,
+html[data-theme="light"] body .sc.g::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #047857, #10B981) !important;
+}
+html body .sc.r::before,
+html[data-theme="light"] body .sc.r::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #B91C1C, #EF4444) !important;
+}
+
+/* Icon → colored circle badge */
+html body .sc .sc-ic,
+html[data-theme="light"] body .sc .sc-ic {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  font-size: 18px !important;
+  margin-bottom: 4px !important;
+  box-shadow:
+    0 2px 6px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.50) inset !important;
+}
+html body .sc.b .sc-ic,
+html[data-theme="light"] body .sc.b .sc-ic {
+  background: linear-gradient(180deg, #DBEAFE, #BFDBFE) !important;
+  border: 1px solid rgba(29,78,216,.25) !important;
+}
+html body .sc.s .sc-ic,
+html[data-theme="light"] body .sc.s .sc-ic {
+  background: linear-gradient(180deg, #FEF3C7, #FDE68A) !important;
+  border: 1px solid rgba(180,83,9,.25) !important;
+}
+html body .sc.g .sc-ic,
+html[data-theme="light"] body .sc.g .sc-ic {
+  background: linear-gradient(180deg, #DCFCE7, #BBF7D0) !important;
+  border: 1px solid rgba(4,120,87,.25) !important;
+}
+html body .sc.r .sc-ic,
+html[data-theme="light"] body .sc.r .sc-ic {
+  background: linear-gradient(180deg, #FEE2E2, #FECACA) !important;
+  border: 1px solid rgba(185,28,28,.25) !important;
+}
+
+/* Numbers slightly bigger for KPI */
+html body .sc.b .sc-val,
+html[data-theme="light"] body .sc.b .sc-val { color: #1E40AF !important; font-size: 32px !important; font-weight: 900 !important; }
+html body .sc.s .sc-val,
+html[data-theme="light"] body .sc.s .sc-val { color: #B45309 !important; font-size: 32px !important; font-weight: 900 !important; }
+html body .sc.g .sc-val,
+html[data-theme="light"] body .sc.g .sc-val { color: #047857 !important; font-size: 32px !important; font-weight: 900 !important; }
+html body .sc.r .sc-val,
+html[data-theme="light"] body .sc.r .sc-val { color: #B91C1C !important; font-size: 32px !important; font-weight: 900 !important; }
+
+/* ── 4. ADMIN JADWAL — peci avatar (jdb-av) styling ────────────────── */
+html body #jadwalList .jd-item.jdb-item,
+html[data-theme="light"] body #jadwalList .jd-item.jdb-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 16px !important;
+  margin-bottom: 8px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 4px 12px rgba(15,23,42,.05),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+/* Peci avatar container */
+html body #jadwalList .jd-item.jdb-item .jdb-av,
+html body .jdb-item .jdb-av,
+html[data-theme="light"] body .jdb-item .jdb-av {
+  position: relative !important;
+  width: 48px !important;
+  height: 48px !important;
+  flex: none !important;
+  border-radius: 14px !important;
+  background: linear-gradient(180deg, #DCFCE7, #BBF7D0) !important;
+  border: 1px solid rgba(4,120,87,.25) !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  box-shadow:
+    0 2px 6px rgba(4,120,87,.15),
+    0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+html body .jdb-item .jdb-av .peci-fig,
+html body .jdb-item .jdb-av svg,
+html[data-theme="light"] body .jdb-item .jdb-av .peci-fig {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Number badge top-right */
+html body .jdb-item .jdb-av .jdb-av-no,
+html[data-theme="light"] body .jdb-item .jdb-av .jdb-av-no {
+  position: absolute !important;
+  top: -6px !important;
+  right: -6px !important;
+  min-width: 22px !important;
+  height: 22px !important;
+  padding: 0 6px !important;
+  border-radius: 11px !important;
+  background: linear-gradient(180deg, #10B981, #047857) !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.1px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0 2px 4px rgba(4,120,87,.30) !important;
+  line-height: 1 !important;
+}
+
+/* Done state — desaturated */
+html body .jdb-item.jd-item-done .jdb-av,
+html body .jdb-item .jdb-av-done,
+html[data-theme="light"] body .jdb-item.jd-item-done .jdb-av {
+  background: linear-gradient(180deg, #F1F5F9, #E2E8F0) !important;
+  border-color: #CBD5E1 !important;
+  filter: saturate(.55) !important;
+}
+html body .jdb-item.jd-item-done .jdb-av-no {
+  background: linear-gradient(180deg, #94A3B8, #64748B) !important;
+}
+
+/* Info text */
+html body #jadwalList .jd-item.jdb-item .jd-info,
+html[data-theme="light"] body #jadwalList .jd-item.jdb-item .jd-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+html body #jadwalList .jd-item.jdb-item .jd-name,
+html[data-theme="light"] body #jadwalList .jd-item.jdb-item .jd-name {
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: #0A0A0A !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.01em !important;
+}
+html body #jadwalList .jd-item.jdb-item .jd-tgl,
+html[data-theme="light"] body #jadwalList .jd-item.jdb-item .jd-tgl {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #1E293B !important;
+  margin-top: 3px !important;
+}
+html body #jadwalList .jd-item.jdb-item.jd-item-done .jd-name {
+  color: #475569 !important;
+}
+html body #jadwalList .jd-item.jdb-item.jd-item-done .jd-tgl {
+  color: #047857 !important;
+}
+
+/* Hide old jd-badge if it still appears */
+html body #jadwalList .jd-item.jdb-item .jd-badge {
+  display: none !important;
+}
+
+/* Dark mode mirror for KPI / hero / admin jadwal */
+[data-theme="dark"] html body .sc.b::before { background: linear-gradient(90deg, #3B82F6, #60A5FA) !important; }
+[data-theme="dark"] html body .sc.s::before { background: linear-gradient(90deg, #F59E0B, #FBBF24) !important; }
+[data-theme="dark"] html body .sc.g::before { background: linear-gradient(90deg, #10B981, #34D399) !important; }
+[data-theme="dark"] html body .sc.r::before { background: linear-gradient(90deg, #EF4444, #F87171) !important; }
+
+[data-theme="dark"] html body .sc.b .sc-ic { background: rgba(59,130,246,.18) !important; border-color: rgba(59,130,246,.30) !important; }
+[data-theme="dark"] html body .sc.s .sc-ic { background: rgba(245,158,11,.18) !important; border-color: rgba(245,158,11,.30) !important; }
+[data-theme="dark"] html body .sc.g .sc-ic { background: rgba(16,185,129,.18) !important; border-color: rgba(16,185,129,.30) !important; }
+[data-theme="dark"] html body .sc.r .sc-ic { background: rgba(239,68,68,.18) !important; border-color: rgba(239,68,68,.30) !important; }
+
+[data-theme="dark"] html body .sc.b .sc-val { font-size: 32px !important; }
+[data-theme="dark"] html body .sc.s .sc-val { font-size: 32px !important; }
+[data-theme="dark"] html body .sc.g .sc-val { font-size: 32px !important; }
+[data-theme="dark"] html body .sc.r .sc-val { font-size: 32px !important; }
+
+[data-theme="dark"] html body #jadwalList .jd-item.jdb-item {
+  background: var(--surf) !important;
+  border-color: var(--line) !important;
+}
+[data-theme="dark"] html body #jadwalList .jd-item.jdb-item .jd-name { color: #F8FAFC !important; }
+[data-theme="dark"] html body #jadwalList .jd-item.jdb-item .jd-tgl { color: #CBD5E1 !important; }
+[data-theme="dark"] html body .jdb-item .jdb-av {
+  background: linear-gradient(180deg, rgba(16,185,129,.20), rgba(4,120,87,.30)) !important;
+  border-color: rgba(52,211,153,.35) !important;
 }
 </style>
 <script id="patch-final-js">
