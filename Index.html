@@ -27087,6 +27087,262 @@ html[data-theme="dark"] body #topbar .tb-refresh:hover{
 html[data-theme="dark"] body #topbar .tb-refresh:active{
   color:#22c55e!important;
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   PREMIUM POLISH v9.1 — CONTRAST & HIERARCHY (FINAL)
+   Tujuan (sesuai feedback user):
+   1. Pertajam kontras pada status "Belum" (urgensi tunggakan)
+   2. Tombol Bayar (hijau solid) & Edit (abu netral lebih gelap) — hierarki
+   3. Nominal angka & nama anggota — extra bold, kontras tinggi
+   4. Angka dashboard (Anggota/Tarikan/Terjadwal) — solid & tegas
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1A. STATUS "BELUM" — solid amber, urgent feel ──────────────────── */
+html body .stt-belum,
+html body .tal-status.belum,
+html body .tal-card .tal-status-belum,
+html body .tal-card.belum .stt-belum {
+  background: linear-gradient(180deg, #F59E0B, #D97706) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(120,53,15,.32) !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase !important;
+  padding: 4px 12px !important;
+  box-shadow:
+    0 2px 6px rgba(217,119,6,.32),
+    0 1px 0 rgba(255,255,255,.32) inset !important;
+  text-shadow: 0 1px 1px rgba(120,53,15,.40) !important;
+}
+
+/* ── 1B. STATUS "LUNAS" — solid green, sejalan dengan Belum ─────────── */
+html body .stt-lunas,
+html body .tal-card.lunas .stt-lunas {
+  background: linear-gradient(180deg, #22C55E, #16A34A) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(20,83,45,.32) !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase !important;
+  padding: 4px 12px !important;
+  box-shadow:
+    0 2px 6px rgba(22,163,74,.32),
+    0 1px 0 rgba(255,255,255,.32) inset !important;
+  text-shadow: 0 1px 1px rgba(20,83,45,.40) !important;
+}
+
+[data-theme="dark"] html body .stt-belum,
+[data-theme="dark"] html body .tal-card.belum .stt-belum {
+  background: linear-gradient(180deg, #F59E0B, #B45309) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(252,211,77,.38) !important;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.45),
+    0 1px 0 rgba(255,255,255,.20) inset !important;
+}
+[data-theme="dark"] html body .stt-lunas,
+[data-theme="dark"] html body .tal-card.lunas .stt-lunas {
+  background: linear-gradient(180deg, #16A34A, #15803D) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(74,222,128,.32) !important;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.45),
+    0 1px 0 rgba(255,255,255,.20) inset !important;
+}
+
+/* ── 2A. TOMBOL "BAYAR" — solid green, primary action ──────────────── */
+html body .tal-act.tal-act-bayar {
+  background: linear-gradient(180deg, #22C55E, #15803D) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(20,83,45,.45) !important;
+  font-weight: 800 !important;
+  font-size: 12.5px !important;
+  letter-spacing: .01em !important;
+  padding: 10px 16px !important;
+  box-shadow:
+    0 4px 12px rgba(22,163,74,.32),
+    0 1px 2px rgba(20,83,45,.18),
+    0 1px 0 rgba(255,255,255,.28) inset !important;
+  text-shadow: 0 1px 1px rgba(20,83,45,.32) !important;
+}
+html body .tal-act.tal-act-bayar:hover {
+  background: linear-gradient(180deg, #16A34A, #14532D) !important;
+  box-shadow:
+    0 6px 16px rgba(22,163,74,.40),
+    0 2px 4px rgba(20,83,45,.22),
+    0 1px 0 rgba(255,255,255,.28) inset !important;
+}
+html body .tal-act.tal-act-bayar:active {
+  transform: scale(.97) !important;
+  box-shadow:
+    0 2px 6px rgba(22,163,74,.28),
+    0 1px 0 rgba(255,255,255,.22) inset !important;
+}
+
+[data-theme="dark"] html body .tal-act.tal-act-bayar {
+  background: linear-gradient(180deg, #16A34A, #14532D) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(74,222,128,.30) !important;
+  box-shadow:
+    0 4px 14px rgba(0,0,0,.45),
+    0 1px 0 rgba(255,255,255,.18) inset !important;
+}
+
+/* ── 2B. TOMBOL "EDIT" — abu netral lebih gelap, secondary action ──── */
+html body .tal-act.tal-act-edit {
+  background: #E2E8F0 !important;
+  color: #1E293B !important;
+  border: 1px solid #94A3B8 !important;
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+  padding: 10px 16px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.65) inset !important;
+  text-shadow: none !important;
+}
+html body .tal-act.tal-act-edit:hover {
+  background: #CBD5E1 !important;
+  border-color: #64748B !important;
+  color: #0F172A !important;
+}
+html body .tal-act.tal-act-edit:active {
+  transform: scale(.97) !important;
+}
+
+[data-theme="dark"] html body .tal-act.tal-act-edit {
+  background: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.40),
+    0 1px 0 rgba(255,255,255,.06) inset !important;
+}
+[data-theme="dark"] html body .tal-act.tal-act-edit:hover {
+  background: #475569 !important;
+  border-color: #64748B !important;
+  color: #F8FAFC !important;
+}
+
+/* ── 3A. NOMINAL ANGKA — extra bold, lebih besar dari meta ─────────── */
+html body .tal-card .tal-card-amt,
+html body .tal-card.belum .tal-card-amt,
+html body .tal-card.lunas .tal-card-amt,
+html body[data-theme="light"] .tal-card .tal-card-amt {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.02em !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+  font-feature-settings: 'tnum' 1, 'lnum' 1 !important;
+  line-height: 1.1 !important;
+  color: #0A0F1E !important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.85),
+    0 1px 2px rgba(15,30,21,.05) !important;
+}
+html body .tal-card.lunas .tal-card-amt {
+  color: #14532D !important;
+}
+
+[data-theme="dark"] html body .tal-card .tal-card-amt,
+[data-theme="dark"] html body .tal-card.belum .tal-card-amt {
+  color: #F0F4FC !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+[data-theme="dark"] html body .tal-card.lunas .tal-card-amt {
+  color: #4ADE80 !important;
+  text-shadow: none !important;
+}
+
+/* ── 3B. NAMA ANGGOTA — dark charcoal #1A1A1A, lebih kontras ─────── */
+html body .tal-card .tal-card-name,
+html body[data-theme="light"] .tal-card .tal-card-name {
+  color: #1A1A1A !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.01em !important;
+  line-height: 1.25 !important;
+}
+[data-theme="dark"] html body .tal-card .tal-card-name {
+  color: #F0F4FC !important;
+  font-weight: 800 !important;
+}
+
+/* Meta line — kontras secondary jelas tapi tidak mendominasi */
+html body .tal-card .tal-card-meta,
+html body[data-theme="light"] .tal-card .tal-card-meta {
+  color: #475569 !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  margin-top: 3px !important;
+}
+[data-theme="dark"] html body .tal-card .tal-card-meta {
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+}
+
+/* ── 4. DASHBOARD KPI NUMBERS (Anggota/Tarikan/Terjadwal) ─────────── */
+/* Solid, tegas, mencuri perhatian — bukan pucat lagi */
+
+html body .sc .sc-val,
+html body[data-theme="light"] .sc .sc-val {
+  font-weight: 900 !important;
+  font-size: 26px !important;
+  letter-spacing: -.7px !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+  line-height: 1.05 !important;
+}
+
+html body .sc.b .sc-val,
+html body[data-theme="light"] .sc.b .sc-val {
+  color: #1E40AF !important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(30,64,175,.18) !important;
+}
+html body .sc.s .sc-val,
+html body[data-theme="light"] .sc.s .sc-val {
+  color: #B45309 !important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(180,83,9,.18) !important;
+}
+html body .sc.g .sc-val,
+html body[data-theme="light"] .sc.g .sc-val {
+  color: #14532D !important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(20,83,45,.18) !important;
+}
+html body .sc.r .sc-val,
+html body[data-theme="light"] .sc.r .sc-val {
+  color: #991B1B !important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.85),
+    0 2px 4px rgba(153,27,27,.18) !important;
+}
+
+/* Label di bawah angka — lebih tegas tapi tidak menyaingi */
+html body .sc .sc-lbl,
+html body[data-theme="light"] .sc .sc-lbl {
+  color: #475569 !important;
+  font-weight: 700 !important;
+  letter-spacing: .5px !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+}
+
+/* Dark-mode mirror — vivid namun tidak silau */
+[data-theme="dark"] html body .sc .sc-val { font-weight: 900 !important; font-size: 26px !important; letter-spacing: -.7px !important; }
+[data-theme="dark"] html body .sc.b .sc-val { color: #93C5FD !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.s .sc-val { color: #FCD34D !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.g .sc-val { color: #4ADE80 !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.r .sc-val { color: #FCA5A5 !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc .sc-lbl { color: #94A3B8 !important; }
 </style>
 <script id="patch-final-js">
 (function(){
