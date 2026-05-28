@@ -29734,6 +29734,321 @@ html body .save-bar .btn:active {
 [data-theme="dark"] html body .tag.tR { background: rgba(239,68,68,.15) !important; color: #FCA5A5 !important; border-color: rgba(239,68,68,.30) !important; }
 [data-theme="dark"] html body .tag.tA { background: rgba(245,158,11,.15) !important; color: #FCD34D !important; border-color: rgba(245,158,11,.30) !important; }
 </style>
+<style id="v10-1-dark-mode-polish">
+/* ════════════════════════════════════════════════════════════════════════
+   v10.1 — DARK MODE EYE-FRIENDLY POLISH
+   Tujuan: dark mode yang nyaman dipakai berlama-lama, tidak menyilaukan.
+   - Bg: deep slate (bukan pure black) supaya tidak jadi 'lubang hitam'
+   - Text: off-white (slate-200) bukan pure white — kurangi eye strain
+   - Surfaces: punya elevasi jelas via subtle border + lighter bg
+   - Accent: muted/translucent untuk dark context (less neon glare)
+   - Hero/buttons: kalem tapi tetap punya identity emerald
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. CORE TOKENS — slate-based dark theme ─────────────────────────── */
+[data-theme="dark"] {
+  --bg:    #0F172A !important;
+  --bg2:   #1A2236 !important;
+  --surf:  #1E293B !important;
+  --surf2: #283548 !important;
+  --surf3: #334155 !important;
+  --elev:  #334155 !important;
+  --line:    #334155 !important;
+  --line2:   #475569 !important;
+  --hairline: rgba(255,255,255,.06) !important;
+  --t0: #E2E8F0 !important;
+  --t1: #CBD5E1 !important;
+  --t2: #94A3B8 !important;
+  --t3: #64748B !important;
+  --t4: #475569 !important;
+  --t5: #334155 !important;
+  --G:      #34D399 !important;
+  --G2:     #10B981 !important;
+  --G3:     #6EE7B7 !important;
+  --G-dim:  rgba(16,185,129,.10) !important;
+  --G-soft: rgba(16,185,129,.18) !important;
+  --G-glow: rgba(16,185,129,.20) !important;
+  --G-muted:#047857 !important;
+  --B:     #60A5FA !important;
+  --B2:    #3B82F6 !important;
+  --B-dim: rgba(59,130,246,.10) !important;
+  --B-glow:rgba(59,130,246,.20) !important;
+  --A:     #FBBF24 !important;
+  --A2:    #F59E0B !important;
+  --A-dim: rgba(245,158,11,.10) !important;
+  --R:     #F87171 !important;
+  --R2:    #EF4444 !important;
+  --R-dim: rgba(239,68,68,.10) !important;
+  --R-soft:rgba(239,68,68,.20) !important;
+}
+
+/* ── 2. BODY ─────────────────────────────────────────────────────────── */
+[data-theme="dark"] html body {
+  background:
+    radial-gradient(ellipse at 60% -10%, rgba(16,185,129,.06), transparent 50%),
+    radial-gradient(ellipse at 80% 110%, rgba(59,130,246,.04), transparent 50%),
+    #0F172A !important;
+  color: #E2E8F0 !important;
+}
+
+/* ── 3. CARDS / SURFACES ─────────────────────────────────────────────── */
+[data-theme="dark"] html body .card,
+[data-theme="dark"] html body .tal-card,
+[data-theme="dark"] html body .jdb-item,
+[data-theme="dark"] html body .pub-member-item,
+[data-theme="dark"] html body .sb-sel-box {
+  background: #1E293B !important;
+  border: 1px solid #334155 !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.30),
+    0 4px 14px rgba(0,0,0,.25),
+    0 1px 0 rgba(255,255,255,.04) inset !important;
+}
+[data-theme="dark"] html body .sc,
+[data-theme="dark"] html body .sc.b,
+[data-theme="dark"] html body .sc.s,
+[data-theme="dark"] html body .sc.g,
+[data-theme="dark"] html body .sc.r {
+  background: #1E293B !important;
+  border: 1px solid #334155 !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.30),
+    0 4px 12px rgba(0,0,0,.20),
+    0 1px 0 rgba(255,255,255,.04) inset !important;
+}
+
+/* ── 4. CARD HEADERS ─────────────────────────────────────────────────── */
+[data-theme="dark"] html body .card-hdr {
+  background: linear-gradient(180deg, #1E293B, #1A2236) !important;
+  border-bottom-color: #334155 !important;
+}
+[data-theme="dark"] html body .card-hdr-t { color: #E2E8F0 !important; font-weight: 800 !important; }
+
+/* ── 5. HEADER (#topbar) ─────────────────────────────────────────────── */
+[data-theme="dark"] html body #topbar {
+  background: rgba(15,23,42,.85) !important;
+  border-bottom-color: #334155 !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+}
+[data-theme="dark"] html body #topbar .tb-name { color: #E2E8F0 !important; }
+[data-theme="dark"] html body #topbar .tb-role { color: #94A3B8 !important; }
+[data-theme="dark"] html body #topbar .tb-refresh { color: #94A3B8 !important; }
+[data-theme="dark"] html body #topbar .tb-refresh:hover { background: #1E293B !important; color: #34D399 !important; }
+[data-theme="dark"] html body #topbar .tb-badge {
+  background: rgba(16,185,129,.14) !important;
+  color: #6EE7B7 !important;
+  border: 1px solid rgba(16,185,129,.30) !important;
+}
+
+/* ── 6. HERO CARD ────────────────────────────────────────────────────── */
+[data-theme="dark"] html body .hero {
+  background:
+    radial-gradient(ellipse at 80% -20%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(155deg, #022C22 0%, #064E3B 35%, #047857 70%, #059669 100%) !important;
+  box-shadow:
+    0 12px 32px -8px rgba(0,0,0,.40),
+    0 4px 12px rgba(0,0,0,.25),
+    0 1px 0 rgba(255,255,255,.10) inset !important;
+}
+[data-theme="dark"] html body .hero-amt { color: #FFFFFF !important; }
+[data-theme="dark"] html body .hero-rp { color: rgba(255,255,255,.78) !important; }
+[data-theme="dark"] html body .hero-ey,
+[data-theme="dark"] html body .hero-label { color: rgba(255,255,255,.65) !important; }
+[data-theme="dark"] html body .hero-note { color: rgba(255,255,255,.74) !important; }
+[data-theme="dark"] html body .hero .hero-chip {
+  background: rgba(255,255,255,.10) !important;
+  border-color: rgba(255,255,255,.16) !important;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.30),
+    0 1px 0 rgba(255,255,255,.14) inset !important;
+}
+
+/* ── 7. KPI VALUES ───────────────────────────────────────────────────── */
+[data-theme="dark"] html body .sc.b .sc-val { color: #93C5FD !important; }
+[data-theme="dark"] html body .sc.s .sc-val { color: #FCD34D !important; }
+[data-theme="dark"] html body .sc.g .sc-val { color: #6EE7B7 !important; }
+[data-theme="dark"] html body .sc.r .sc-val { color: #FCA5A5 !important; }
+[data-theme="dark"] html body .sc .sc-lbl { color: #94A3B8 !important; }
+[data-theme="dark"] html body .sc.b::before { background: linear-gradient(90deg, #3B82F6, #60A5FA) !important; }
+[data-theme="dark"] html body .sc.s::before { background: linear-gradient(90deg, #F59E0B, #FBBF24) !important; }
+[data-theme="dark"] html body .sc.g::before { background: linear-gradient(90deg, #10B981, #34D399) !important; }
+[data-theme="dark"] html body .sc.r::before { background: linear-gradient(90deg, #EF4444, #F87171) !important; }
+[data-theme="dark"] html body .sc.b .sc-ic { background: rgba(59,130,246,.16) !important; border-color: rgba(59,130,246,.30) !important; }
+[data-theme="dark"] html body .sc.s .sc-ic { background: rgba(245,158,11,.16) !important; border-color: rgba(245,158,11,.30) !important; }
+[data-theme="dark"] html body .sc.g .sc-ic { background: rgba(16,185,129,.16) !important; border-color: rgba(16,185,129,.30) !important; }
+[data-theme="dark"] html body .sc.r .sc-ic { background: rgba(239,68,68,.16) !important; border-color: rgba(239,68,68,.30) !important; }
+
+/* ── 8. ALERTS ───────────────────────────────────────────────────────── */
+[data-theme="dark"] html body .alert {
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.30),
+    0 4px 12px rgba(0,0,0,.20) !important;
+}
+[data-theme="dark"] html body .alert.aG { background: rgba(16,185,129,.10) !important; border-color: rgba(16,185,129,.25) !important; color: #6EE7B7 !important; }
+[data-theme="dark"] html body .alert.aB { background: rgba(59,130,246,.10) !important; border-color: rgba(59,130,246,.25) !important; color: #93C5FD !important; }
+[data-theme="dark"] html body .alert.aR { background: rgba(239,68,68,.10) !important; border-color: rgba(239,68,68,.25) !important; color: #FCA5A5 !important; }
+[data-theme="dark"] html body .alert.aA,
+[data-theme="dark"] html body .alert.aS {
+  background: rgba(245,158,11,.10) !important;
+  border-color: rgba(245,158,11,.25) !important;
+  color: #FCD34D !important;
+}
+[data-theme="dark"] html body .alert.aS .alert-ic { color: #FBBF24 !important; }
+
+/* ── 9. STATUS PILLS ─────────────────────────────────────────────────── */
+[data-theme="dark"] html body .stt-belum,
+[data-theme="dark"] html body .tal-card.belum .stt-belum {
+  background: linear-gradient(180deg, #F59E0B, #B45309) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(252,211,77,.30) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.18) inset !important;
+}
+[data-theme="dark"] html body .stt-lunas,
+[data-theme="dark"] html body .tal-card.lunas .stt-lunas {
+  background: linear-gradient(180deg, #10B981, #047857) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(52,211,153,.30) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.18) inset !important;
+}
+
+/* ── 10. TAGS ────────────────────────────────────────────────────────── */
+[data-theme="dark"] html body .tag.tS,
+[data-theme="dark"] html body .tag.tB { background: rgba(59,130,246,.14) !important; color: #93C5FD !important; border-color: rgba(59,130,246,.30) !important; }
+[data-theme="dark"] html body .tag.tG { background: rgba(16,185,129,.14) !important; color: #6EE7B7 !important; border-color: rgba(16,185,129,.30) !important; }
+[data-theme="dark"] html body .tag.tR { background: rgba(239,68,68,.14) !important; color: #FCA5A5 !important; border-color: rgba(239,68,68,.30) !important; }
+[data-theme="dark"] html body .tag.tA { background: rgba(245,158,11,.14) !important; color: #FCD34D !important; border-color: rgba(245,158,11,.30) !important; }
+
+/* ── 11. PUB BADGES ──────────────────────────────────────────────────── */
+[data-theme="dark"] html body .pub-badge.hadir { background: rgba(16,185,129,.14) !important; color: #6EE7B7 !important; border-color: rgba(16,185,129,.30) !important; }
+[data-theme="dark"] html body .pub-badge.titip,
+[data-theme="dark"] html body .pub-badge.sb,
+[data-theme="dark"] html body .pub-badge.sudah-badge { background: rgba(245,158,11,.14) !important; color: #FCD34D !important; border-color: rgba(245,158,11,.30) !important; }
+[data-theme="dark"] html body .pub-badge.tidak { background: rgba(100,116,139,.16) !important; color: #94A3B8 !important; border-color: rgba(148,163,184,.30) !important; }
+
+/* ── 12. BUTTONS ─────────────────────────────────────────────────────── */
+[data-theme="dark"] html body .tal-act.tal-act-bayar,
+[data-theme="dark"] html body .save-bar .btn-G {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #10B981 0%, #047857 100%) !important;
+  border-color: rgba(52,211,153,.30) !important;
+  box-shadow:
+    0 4px 14px rgba(0,0,0,.45),
+    0 2px 4px rgba(0,0,0,.20),
+    0 1px 0 rgba(255,255,255,.18) inset !important;
+}
+[data-theme="dark"] html body .tal-act.tal-act-edit,
+[data-theme="dark"] html body .btn-recalc,
+[data-theme="dark"] html body .btn-edit-jd {
+  background: #283548 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.30), 0 1px 0 rgba(255,255,255,.06) inset !important;
+}
+[data-theme="dark"] html body .btn-recalc { color: #34D399 !important; }
+[data-theme="dark"] html body .tal-act.tal-act-edit:hover,
+[data-theme="dark"] html body .btn-recalc:hover,
+[data-theme="dark"] html body .btn-edit-jd:hover { background: #334155 !important; border-color: #64748B !important; }
+
+[data-theme="dark"] html body .krt2-pdf-link,
+[data-theme="dark"] html body .kh2-pdf-link,
+[data-theme="dark"] html body .pdf-jadwal-btn {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #34D399 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.30), 0 4px 12px rgba(0,0,0,.20), 0 1px 0 rgba(255,255,255,.05) inset !important;
+}
+[data-theme="dark"] html body .krt2-pdf-link svg,
+[data-theme="dark"] html body .kh2-pdf-link svg,
+[data-theme="dark"] html body .pdf-jadwal-btn svg { color: #34D399 !important; }
+
+/* ── 13. INPUTS / SEARCH ─────────────────────────────────────────────── */
+[data-theme="dark"] html body .srch {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.30), 0 4px 12px rgba(0,0,0,.20), 0 1px 0 rgba(255,255,255,.05) inset !important;
+}
+[data-theme="dark"] html body .srch:focus-within {
+  border-color: rgba(52,211,153,.40) !important;
+  box-shadow: 0 0 0 3px rgba(16,185,129,.15), 0 4px 14px rgba(0,0,0,.30), 0 1px 0 rgba(255,255,255,.05) inset !important;
+}
+[data-theme="dark"] html body .srch .srch-ic { color: #34D399 !important; }
+[data-theme="dark"] html body .srch input { color: #E2E8F0 !important; }
+[data-theme="dark"] html body .srch input::placeholder { color: #64748B !important; }
+[data-theme="dark"] html body .srch .srch-clr {
+  background: #334155 !important;
+  border-color: #475569 !important;
+  color: #94A3B8 !important;
+}
+[data-theme="dark"] html body .srch .srch-clr:hover { background: rgba(239,68,68,.16) !important; color: #FCA5A5 !important; border-color: rgba(239,68,68,.30) !important; }
+
+[data-theme="dark"] html body .finp {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+[data-theme="dark"] html body .finp:focus { border-color: #10B981 !important; box-shadow: 0 0 0 3px rgba(16,185,129,.15) !important; }
+[data-theme="dark"] html body .finp::placeholder { color: #64748B !important; }
+
+/* ── 14. KAS LIST ────────────────────────────────────────────────────── */
+[data-theme="dark"] html body .ks-row .ks-lbl { color: #CBD5E1 !important; }
+[data-theme="dark"] html body .ks-row .ks-val { color: #E2E8F0 !important; }
+[data-theme="dark"] html body .ks-row.ks-in .ks-val,
+[data-theme="dark"] html body .ks-row.income .ks-val { color: #34D399 !important; }
+[data-theme="dark"] html body .ks-row.ks-out .ks-val,
+[data-theme="dark"] html body .ks-row.expense .ks-val { color: #FCA5A5 !important; }
+
+/* ── 15. TALANGAN/JADWAL/PUB ─────────────────────────────────────────── */
+[data-theme="dark"] html body .tal-card .tal-card-name { color: #E2E8F0 !important; font-weight: 800 !important; }
+[data-theme="dark"] html body .tal-card .tal-card-meta { color: #94A3B8 !important; font-weight: 500 !important; }
+[data-theme="dark"] html body .tal-card .tal-card-amt,
+[data-theme="dark"] html body .tal-card.belum .tal-card-amt { color: #F1F5F9 !important; font-weight: 900 !important; }
+[data-theme="dark"] html body .tal-card.lunas .tal-card-amt { color: #34D399 !important; }
+[data-theme="dark"] html body .jdb-item .jd-name { color: #E2E8F0 !important; font-weight: 800 !important; }
+[data-theme="dark"] html body .jdb-item .jd-tgl { color: #94A3B8 !important; font-weight: 600 !important; }
+[data-theme="dark"] html body .jdb-item .jdb-av,
+[data-theme="dark"] html body .pub-member-item .pub-av.pub-av-peci {
+  background: linear-gradient(180deg, rgba(16,185,129,.18), rgba(4,120,87,.28)) !important;
+  border-color: rgba(52,211,153,.30) !important;
+}
+[data-theme="dark"] html body .pub-member-name { color: #E2E8F0 !important; }
+[data-theme="dark"] html body .pub-no-urut { color: #64748B !important; }
+[data-theme="dark"] html body .sb-sel-name { color: #E2E8F0 !important; font-weight: 800 !important; }
+[data-theme="dark"] html body .sb-sel-note { color: #94A3B8 !important; font-weight: 600 !important; }
+[data-theme="dark"] html body .sec-ttl { color: #94A3B8 !important; }
+
+/* ── 16. BOTTOM NAV ──────────────────────────────────────────────────── */
+[data-theme="dark"] html body #bottomNav {
+  background: rgba(15,23,42,.88) !important;
+  border-color: rgba(255,255,255,.06) !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,.50),
+    0 2px 8px rgba(0,0,0,.30),
+    0 0 0 0.5px rgba(255,255,255,.04) !important;
+}
+[data-theme="dark"] html body #bottomNav .ni { color: #94A3B8 !important; }
+[data-theme="dark"] html body #bottomNav .ni .ni-lbl { color: #94A3B8 !important; }
+[data-theme="dark"] html body #bottomNav .ni .ni-ico svg { color: #94A3B8 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on,
+[data-theme="dark"] html body #bottomNav .ni.on .ni-lbl { color: #34D399 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico svg { color: #34D399 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico {
+  background: linear-gradient(180deg, rgba(16,185,129,.20), rgba(4,120,87,.28)) !important;
+  border: 1px solid rgba(52,211,153,.30) !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.40),
+    0 0 0 4px rgba(16,185,129,.10),
+    0 1px 0 rgba(255,255,255,.10) inset !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on::after {
+  background: linear-gradient(90deg, #10B981, #34D399) !important;
+}
+
+/* ── 17. SCROLLBAR ───────────────────────────────────────────────────── */
+[data-theme="dark"] *::-webkit-scrollbar-thumb { background: #334155 !important; }
+[data-theme="dark"] * { scrollbar-color: #334155 transparent !important; }
+</style>
 <script id="patch-final-js">
 (function(){
   'use strict';
