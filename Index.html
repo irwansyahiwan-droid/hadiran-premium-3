@@ -30062,6 +30062,67 @@ html body .save-bar .btn:active {
 [data-theme="dark"] * { scrollbar-color: #334155 transparent !important; }
 
 /* ════════════════════════════════════════════════════════════════════════
+   v10.4 — KPI cards COMPACT (request user: 'terlalu besar, di buat compack')
+   Anggota/Tarikan/Terjadwal di Beranda dibuat lebih ringkas.
+   ════════════════════════════════════════════════════════════════════════ */
+html body .sg.sg3,
+html[data-theme="light"] body .sg.sg3 {
+  gap: 8px !important;
+}
+
+html body .sc,
+html[data-theme="light"] body .sc {
+  padding: 10px 8px 10px !important;
+  gap: 2px !important;
+}
+
+html body .sc.b::before,
+html body .sc.s::before,
+html body .sc.g::before,
+html body .sc.r::before {
+  height: 3px !important;
+}
+
+html body .sc .sc-ic,
+html[data-theme="light"] body .sc .sc-ic {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 9px !important;
+  font-size: 15px !important;
+  margin-bottom: 3px !important;
+}
+
+html body .sc .sc-val,
+html body .sc.b .sc-val,
+html body .sc.s .sc-val,
+html body .sc.g .sc-val,
+html body .sc.r .sc-val,
+html[data-theme="light"] body .sc .sc-val {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.6px !important;
+  line-height: 1 !important;
+  margin-bottom: 1px !important;
+}
+
+html body .sc .sc-lbl,
+html[data-theme="light"] body .sc .sc-lbl {
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .4px !important;
+  text-transform: uppercase !important;
+  margin-top: 2px !important;
+}
+
+[data-theme="dark"] html body .sc { padding: 10px 8px 10px !important; }
+[data-theme="dark"] html body .sc .sc-ic { width: 30px !important; height: 30px !important; border-radius: 9px !important; font-size: 15px !important; }
+[data-theme="dark"] html body .sc .sc-val,
+[data-theme="dark"] html body .sc.b .sc-val,
+[data-theme="dark"] html body .sc.s .sc-val,
+[data-theme="dark"] html body .sc.g .sc-val,
+[data-theme="dark"] html body .sc.r .sc-val { font-size: 22px !important; }
+
+/* ════════════════════════════════════════════════════════════════════════
    v10.2 — HIDE duplikasi summary cards (request user)
    Card 'Terkumpul/Talangan/Lunas/Belum Lunas/Disetor' yang muncul di bawah
    hero card adalah duplikasi info yang sudah ada di hero. User minta hapus.
