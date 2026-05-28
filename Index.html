@@ -27669,6 +27669,347 @@ html[data-theme="light"] body #bottomNav .ni.on .ni-lbl {
 }
 [data-theme="dark"] html body .tal-card .tal-card-name { color: #F0F4FC !important; font-weight: 800 !important; }
 [data-theme="dark"] html body .tal-card .tal-card-meta { color: #94A3B8 !important; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   PREMIUM POLISH v9.3 — DEEP CONTRAST PASS
+   Goals (per user feedback v3):
+   - Nav: icon TIDAK putih lagi → kembali ke emerald color (active),
+           inactive icon LEBIH GELAP supaya sangat jelas
+   - Kontras keseluruhan: warmer gray page bg, near-black headlines,
+           bigger/bolder numerals, deeper button gradients,
+           card border lebih tegas
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── A. PAGE BACKGROUND — warmer, more visible separation ─────────── */
+html body,
+html[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse at 60% -10%, rgba(16,185,129,.05), transparent 50%),
+    #EFEBE0 !important;       /* hangat keruh, beda dari card putih */
+}
+
+/* ── B. CARD — crisp white + tegas border + lifted shadow ─────────── */
+html body .card,
+html body .tal-card,
+html[data-theme="light"] body .card,
+html[data-theme="light"] body .tal-card {
+  background: #FFFFFF !important;
+  border: 1px solid #DDD7C7 !important;        /* warm border lebih kontras */
+  box-shadow:
+    0 1px 3px rgba(15,23,42,.06),
+    0 6px 20px rgba(15,23,42,.07) !important;
+}
+
+/* Stat KPI cards — solid white over warm bg */
+html body .sc,
+html body .sc.b, html body .sc.s, html body .sc.g, html body .sc.r,
+html[data-theme="light"] body .sc,
+html[data-theme="light"] body .sc.b,
+html[data-theme="light"] body .sc.s,
+html[data-theme="light"] body .sc.g,
+html[data-theme="light"] body .sc.r {
+  background: #FFFFFF !important;
+  border: 1px solid #DDD7C7 !important;
+  box-shadow:
+    0 1px 3px rgba(15,23,42,.06),
+    0 6px 18px rgba(15,23,42,.07) !important;
+}
+
+/* Surf utility */
+html body .surf2,
+html body .surf3,
+html[data-theme="light"] body .surf2,
+html[data-theme="light"] body .surf3 {
+  background: #F0ECDF !important;
+}
+
+/* ── C. STATUS "BELUM" — sophisticated terracotta (deeper) ────────── */
+html body .stt-belum,
+html body .tal-status.belum,
+html body .tal-card .tal-status-belum,
+html body .tal-card.belum .stt-belum {
+  background: linear-gradient(180deg, #EA580C, #9A3412) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(67,20,7,.45) !important;
+  box-shadow:
+    0 3px 8px rgba(154,52,18,.32),
+    0 1px 0 rgba(255,255,255,.30) inset !important;
+  text-shadow: 0 1px 1px rgba(67,20,7,.45) !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  font-size: 10.5px !important;
+  padding: 4px 12px !important;
+}
+
+/* ── D. STATUS "LUNAS" — emerald deeper ───────────────────────────── */
+html body .stt-lunas,
+html body .tal-card.lunas .stt-lunas {
+  background: linear-gradient(180deg, #059669, #064E3B) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(2,44,34,.45) !important;
+  box-shadow:
+    0 3px 8px rgba(6,78,59,.32),
+    0 1px 0 rgba(255,255,255,.30) inset !important;
+  text-shadow: 0 1px 1px rgba(2,44,34,.45) !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  font-size: 10.5px !important;
+  padding: 4px 12px !important;
+}
+
+/* ── E. BUTTON BAYAR — deeper emerald ─────────────────────────────── */
+html body .tal-act.tal-act-bayar {
+  background: linear-gradient(180deg, #059669, #064E3B) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(2,44,34,.50) !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  letter-spacing: .015em !important;
+  padding: 11px 18px !important;
+  box-shadow:
+    0 5px 14px rgba(6,78,59,.36),
+    0 1px 2px rgba(2,44,34,.20),
+    0 1px 0 rgba(255,255,255,.30) inset !important;
+  text-shadow: 0 1px 1px rgba(2,44,34,.40) !important;
+}
+html body .tal-act.tal-act-bayar:hover {
+  background: linear-gradient(180deg, #047857, #022C22) !important;
+}
+
+/* ── F. BUTTON EDIT — deeper neutral, kontras jelas ──────────────── */
+html body .tal-act.tal-act-edit {
+  background: #B6BFCE !important;             /* slate-300+ */
+  color: #0F172A !important;                  /* slate-900 text */
+  border: 1px solid #64748B !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 11px 18px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.12),
+    0 1px 0 rgba(255,255,255,.50) inset !important;
+  text-shadow: none !important;
+}
+html body .tal-act.tal-act-edit:hover {
+  background: #94A3B8 !important;
+  color: #0F172A !important;
+}
+
+/* ── G. NUMERIC HEADLINE — near-black, weight 900 ────────────────── */
+/* Talangan amount */
+html body .tal-card .tal-card-amt,
+html body .tal-card.belum .tal-card-amt,
+html[data-theme="light"] body .tal-card .tal-card-amt {
+  color: #0A0A0A !important;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.02em !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+  font-feature-settings: 'tnum' 1, 'lnum' 1 !important;
+  line-height: 1.1 !important;
+  text-shadow: none !important;
+}
+html body .tal-card.lunas .tal-card-amt {
+  color: #064E3B !important;
+}
+
+/* Hero / kas / amount lain */
+html body .hero-amt,
+html body .kas-amt,
+html body .rek-amt,
+html body .kbs-card-nom {
+  font-weight: 900 !important;
+  letter-spacing: -1.2px !important;
+}
+
+/* ── H. MEMBER NAME — near-black ─────────────────────────────────── */
+html body .tal-card .tal-card-name,
+html[data-theme="light"] body .tal-card .tal-card-name {
+  color: #0A0A0A !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  letter-spacing: -.01em !important;
+  line-height: 1.25 !important;
+}
+
+/* Meta secondary — readable but clearly muted */
+html body .tal-card .tal-card-meta,
+html[data-theme="light"] body .tal-card .tal-card-meta {
+  color: #475569 !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  margin-top: 3px !important;
+}
+
+/* ── I. KPI NUMBERS — bigger, deeper hue match ───────────────────── */
+html body .sc.b .sc-val,
+html[data-theme="light"] body .sc.b .sc-val {
+  color: #1E3A8A !important;          /* deep royal blue */
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+html body .sc.s .sc-val,
+html[data-theme="light"] body .sc.s .sc-val {
+  color: #9A3412 !important;          /* deep terracotta */
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+html body .sc.g .sc-val,
+html[data-theme="light"] body .sc.g .sc-val {
+  color: #064E3B !important;          /* deep emerald */
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+html body .sc.r .sc-val,
+html[data-theme="light"] body .sc.r .sc-val {
+  color: #7F1D1D !important;
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+
+/* KPI label */
+html body .sc .sc-lbl,
+html[data-theme="light"] body .sc .sc-lbl {
+  color: #475569 !important;
+  font-weight: 800 !important;
+  letter-spacing: .6px !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  margin-top: 4px !important;
+}
+
+/* ── J. BOTTOM NAV — icon HIJAU (bukan putih), inactive jelas gelap  */
+
+/* Inactive — slate-700, opacity penuh */
+html body #bottomNav .ni,
+html[data-theme="light"] body #bottomNav .ni {
+  color: #334155 !important;
+  opacity: 1 !important;
+}
+html body #bottomNav .ni .ni-lbl,
+html[data-theme="light"] body #bottomNav .ni .ni-lbl {
+  color: #334155 !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+  font-size: 9.5px !important;
+  letter-spacing: .25px !important;
+}
+html body #bottomNav .ni .ni-ico,
+html[data-theme="light"] body #bottomNav .ni .ni-ico {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html body #bottomNav .ni .ni-ico svg,
+html[data-theme="light"] body #bottomNav .ni .ni-ico svg {
+  color: #334155 !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Active — soft emerald tint pill, icon SOLID EMERALD GREEN (bukan putih) */
+html body #bottomNav .ni.on,
+html[data-theme="light"] body #bottomNav .ni.on {
+  color: #047857 !important;
+}
+html body #bottomNav .ni.on::after,
+html[data-theme="light"] body #bottomNav .ni.on::after {
+  display: none !important;
+}
+html body #bottomNav .ni.on .ni-ico,
+html[data-theme="light"] body #bottomNav .ni.on .ni-ico {
+  background: linear-gradient(180deg, #D1FAE5, #A7F3D0) !important;
+  border: 1px solid rgba(4,120,87,.30) !important;
+  box-shadow:
+    0 2px 6px rgba(4,120,87,.18),
+    0 1px 0 rgba(255,255,255,.65) inset !important;
+}
+html body #bottomNav .ni.on .ni-ico svg,
+html[data-theme="light"] body #bottomNav .ni.on .ni-ico svg {
+  color: #047857 !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  filter: none !important;
+  transform: translateY(-1px) scale(1.05) !important;
+  text-shadow: none !important;
+}
+html body #bottomNav .ni.on .ni-lbl,
+html[data-theme="light"] body #bottomNav .ni.on .ni-lbl {
+  color: #047857 !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
+
+/* ── K. DARK MODE mirror ───────────────────────────────────────────── */
+[data-theme="dark"] html body { background: var(--bg) !important; }
+
+[data-theme="dark"] html body .card,
+[data-theme="dark"] html body .tal-card,
+[data-theme="dark"] html body .sc,
+[data-theme="dark"] html body .sc.b,
+[data-theme="dark"] html body .sc.s,
+[data-theme="dark"] html body .sc.g,
+[data-theme="dark"] html body .sc.r {
+  background: var(--surf) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,.32),
+    0 6px 18px rgba(0,0,0,.28) !important;
+}
+
+[data-theme="dark"] html body .tal-card .tal-card-amt,
+[data-theme="dark"] html body .tal-card.belum .tal-card-amt {
+  color: #F8FAFC !important; font-weight: 900 !important; font-size: 19px !important;
+}
+[data-theme="dark"] html body .tal-card.lunas .tal-card-amt {
+  color: #34D399 !important;
+}
+[data-theme="dark"] html body .tal-card .tal-card-name {
+  color: #F8FAFC !important; font-weight: 800 !important;
+}
+[data-theme="dark"] html body .tal-card .tal-card-meta {
+  color: #94A3B8 !important;
+}
+
+[data-theme="dark"] html body .sc.b .sc-val { color: #93C5FD !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.s .sc-val { color: #FDBA74 !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.g .sc-val { color: #6EE7B7 !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.r .sc-val { color: #FCA5A5 !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc .sc-lbl { color: #94A3B8 !important; }
+
+[data-theme="dark"] html body #bottomNav .ni,
+[data-theme="dark"] html body #bottomNav .ni .ni-lbl {
+  color: #CBD5E1 !important; opacity: 1 !important; font-weight: 700 !important;
+}
+[data-theme="dark"] html body #bottomNav .ni .ni-ico svg {
+  color: #CBD5E1 !important; fill: currentColor !important; stroke: currentColor !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico {
+  background: linear-gradient(180deg, rgba(16,185,129,.20), rgba(6,95,70,.30)) !important;
+  border: 1px solid rgba(52,211,153,.40) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.45), 0 1px 0 rgba(255,255,255,.10) inset !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico svg {
+  color: #34D399 !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on,
+[data-theme="dark"] html body #bottomNav .ni.on .ni-lbl {
+  color: #34D399 !important; font-weight: 800 !important;
+}
 </style>
 <script id="patch-final-js">
 (function(){
