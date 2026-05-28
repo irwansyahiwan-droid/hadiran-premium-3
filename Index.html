@@ -25459,52 +25459,6 @@ html body #pgAbsensi#pgAbsensi#pgAbsensi {
 </style>
 
 
-<script id="patch-v120-js">
-(function(){
-  'use strict';
-  /* Set inline padding-bottom on #pgAbsensi — inline style beats all CSS */
-  function applyPageFix() {
-    var pg = document.getElementById('pgAbsensi');
-    if (pg) {
-      var safeArea = parseFloat(getComputedStyle(document.documentElement)
-        .getPropertyValue('--safe-bottom') || '0') || 0;
-      /* v9.11: 96px cukup — buffer tambahan datang dari mainScrollWrap padding
-         + v122 spacer. Sebelumnya 280px → akumulasi terlalu besar (>1900px). */
-      var clearance = 96 + safeArea;
-      pg.style.setProperty('padding-bottom', clearance + 'px', 'important');
-    }
-    /* Also ensure mainScrollWrap keeps its clearance (works with v119) */
-    var wrap = document.getElementById('mainScrollWrap');
-    if (wrap) {
-      var cur = parseInt(wrap.style.paddingBottom || '0', 10);
-      /* v9.11: minimal 120px (was 280px) — match clampClearance */
-      if (cur < 120) wrap.style.setProperty('padding-bottom', '120px', 'important');
-    }
-  }
-
-
-  /* Run at multiple stages to survive any timing race */
-  function schedFix() {
-    applyPageFix();
-    setTimeout(applyPageFix, 400);
-    setTimeout(applyPageFix, 1200);
-    setTimeout(applyPageFix, 3000);
-  }
-
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', schedFix);
-  } else {
-    schedFix();
-  }
-
-
-  /* Maintain via interval (handles nav show/hide state changes) */
-  setInterval(applyPageFix, 2000);
-})();
-</script>
-
-
 
 
 <!-- ════════════════════════════════════════════════════════════════════════
@@ -29186,20 +29140,9 @@ html body .pub-member-item .pub-av.pub-av-peci.sudah-av::after {
   border-color: rgba(148,163,184,.30) !important;
 }
 
-/* ── 2. PG ABSENSI — DEFINITIVE PADDING BOTTOM (anti-tertutup-nav) ──── */
-/* v9.11: DIKURANGI. Sebelumnya 300/360px → akumulasi terlalu besar.
-   Sekarang 96/140px = cukup nav + safe + breathing. */
-html body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
-html[data-theme] body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
-html[data-theme="light"] body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
-html[data-theme="dark"]  body section#pgAbsensi#pgAbsensi#pgAbsensi.page {
-  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px) + 36px) !important;
-}
-
-html body.has-savebar section#pgAbsensi#pgAbsensi#pgAbsensi.page,
-html[data-theme] body.has-savebar section#pgAbsensi#pgAbsensi#pgAbsensi.page {
-  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px) + 44px) !important;
-}
+/* ── 2. PG ABSENSI — v9.12: REMOVED. Tidak ada custom padding lagi.
+       pgAbsensi akan pakai .page padding-bottom default sama dengan
+       halaman lain (pgKas, pgKasRT, pgTalangan) yang sudah fine. */
 
 /* Boost mainScrollWrap scroll-padding so anchor scrolls land above nav */
 html body #mainScrollWrap,
@@ -29219,35 +29162,9 @@ html body #mainScrollWrap > section.page#pgAbsensi {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   v9.9 → v9.11: DISABLED. Buffer kumulatif sudah terlalu besar.
-   ::after pseudo-element direset ke 0px supaya tidak menambah buffer.
+   v9.12: REMOVED. ::after pseudo-element dan jadwalList::after di-DELETE.
+   pgAbsensi akan inherit padding-bottom default dari .page rule.
    ════════════════════════════════════════════════════════════════════════ */
-html body section.page#pgAbsensi::after,
-html[data-theme] body section.page#pgAbsensi::after,
-html[data-theme="light"] body section.page#pgAbsensi::after,
-html[data-theme="dark"]  body section.page#pgAbsensi::after {
-  content: '' !important;
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-}
-
-html body.has-savebar section.page#pgAbsensi::after,
-html[data-theme] body.has-savebar section.page#pgAbsensi::after {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-}
-
-/* jadwalList::after juga direset ke kecil saja (60px untuk separation card) */
-html body #jadwalList::after,
-html[data-theme] body #jadwalList::after {
-  content: '' !important;
-  display: block !important;
-  height: 60px !important;
-  min-height: 60px !important;
-  width: 100% !important;
-}
 </style>
 <script id="patch-final-js">
 (function(){
@@ -29287,38 +29204,7 @@ html[data-theme] body #jadwalList::after {
 })();
 </script>
 
-<script id="patch-v910-pgabsensi-sentinel">
-/* ════════════════════════════════════════════════════════════════════════
-   v9.11: DISABLED. v9.10 sentinel 480px JUSTRU bikin buffer kumulatif
-   (~1980px) jauh melebihi viewport — scroll-bottom mendarat di kekosongan,
-   user lihat "konten habis terblok warna bg".
-   Script ini sekarang HANYA menghapus sentinel kalau sudah ada,
-   memastikan tidak ada residual dari versi sebelumnya.
-   ════════════════════════════════════════════════════════════════════════ */
-(function(){
-  'use strict';
-  var SENTINEL_ID = 'pgAbsensiSentinel';
 
-  function removeSentinel(){
-    var el = document.getElementById(SENTINEL_ID);
-    if(el && el.parentNode){
-      el.parentNode.removeChild(el);
-    }
-  }
-
-  function init(){
-    removeSentinel();
-    /* Watch — jika ada patch lama re-inject sentinel, hapus lagi */
-    setInterval(removeSentinel, 1500);
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 
 </body>
