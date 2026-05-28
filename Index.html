@@ -8068,8 +8068,6 @@ document.addEventListener('DOMContentLoaded', function() {
           var done    = j.status === 'Selesai';
           var rowCls  = done ? 'jdw-row-done' : (idx % 2 === 0 ? 'jdw-row-even' : 'jdw-row-odd');
           var tglTxt  = fmtTgl(j.tanggal);
-          var init    = (j.sohibulBait || '?').charAt(0).toUpperCase();
-          var avBg    = done ? 'linear-gradient(135deg,#16A34A,#15803D)' : 'linear-gradient(135deg,#1746A2,#1E3A8A)';
           var badgeBg = done ? 'linear-gradient(135deg,#DCFCE7,#BBF7D0)' : 'linear-gradient(135deg,#EFF6FF,#DBEAFE)';
           var badgeBd = done ? '#86EFAC' : '#93C5FD';
           var badgeC  = done ? '#166534' : '#1E3A8A';
@@ -8084,7 +8082,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '</td>' +
             '<td>' +
             '<div class="v30-info-row">' +
-            '<div class="v30-av" style="border-radius:9px;background:' + avBg + ';color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;box-shadow:0 2px 5px rgba(0,0,0,.14);">' + init + '</div>' +
+            '<div class="v30-av v30-av-peci' + (done ? ' v30-av-done' : '') + '">' + peciAvatar() + '</div>' +
             '<div class="v30-info-text">' +
             '<div class="v30-name">' + (j.sohibulBait || '') + '</div>' +
             '<div class="v30-meta">' +
@@ -28771,6 +28769,313 @@ html body #jadwalList .jd-item.jdb-item .jd-badge {
 [data-theme="dark"] html body .jdb-item .jdb-av {
   background: linear-gradient(180deg, rgba(16,185,129,.20), rgba(4,120,87,.30)) !important;
   border-color: rgba(52,211,153,.35) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PREMIUM POLISH v9.6 — TARGETED FIXES (per user feedback round 5)
+   1. Hero chip "Setor Kas RT" tidak terpotong — fit content, smaller font
+   2. Warga Jadwal: peci avatar (gantikan inisial)
+   3. Search box: clean + raised neumorphic
+   4. PDF Cetak buttons (Kas RT/Kas Hadiran/Jadwal): clean + raised
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. HERO CHIPS — FIT CONTENT, no truncation ────────────────────── */
+html body .hero .hero-chips,
+html[data-theme="light"] body .hero .hero-chips {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 6px !important;
+  margin-top: 12px !important;
+}
+
+html body .hero .hero-chip,
+html[data-theme="light"] body .hero .hero-chip {
+  background: rgba(255,255,255,.16) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 12px !important;
+  padding: 8px 9px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.18),
+    0 1px 0 rgba(255,255,255,.22) inset !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+/* Icon kecil di pojok atas, biar tidak makan space */
+html body .hero .hero-chip .chip-ic,
+html[data-theme="light"] body .hero .hero-chip .chip-ic {
+  font-size: 13px !important;
+  line-height: 1 !important;
+  margin-bottom: 0 !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.30)) !important;
+  align-self: flex-start !important;
+}
+
+html body .hero .hero-chip .chip-body,
+html[data-theme="light"] body .hero .hero-chip .chip-body {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+html body .hero .hero-chip .chip-lbl,
+html[data-theme="light"] body .hero .hero-chip .chip-lbl {
+  color: rgba(255,255,255,.92) !important;
+  font-size: 8.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .6px !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.28) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1px !important;
+}
+
+html body .hero .hero-chip .chip-val,
+html[data-theme="light"] body .hero .hero-chip .chip-val {
+  color: #FFFFFF !important;
+  font-size: 11.5px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.3px !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.32) !important;
+  white-space: nowrap !important;
+  overflow: visible !important;       /* tampil penuh, jangan dipotong */
+  text-overflow: clip !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* For super-narrow screens (<360px), reduce further */
+@media (max-width: 380px) {
+  html body .hero .hero-chip { padding: 7px 7px !important; }
+  html body .hero .hero-chip .chip-val { font-size: 10.5px !important; letter-spacing: -.4px !important; }
+  html body .hero .hero-chip .chip-lbl { font-size: 8px !important; }
+}
+
+/* Chip-val variants — brighter accent on dark hero */
+html body .hero .chip-green .chip-val { color: #BBF7D0 !important; }
+html body .hero .chip-red   .chip-val { color: #FECACA !important; }
+html body .hero .chip-blue  .chip-val { color: #BFDBFE !important; }
+
+/* ── 2. WARGA JADWAL — peci avatar styling (replaces initial) ──────── */
+html body .v30-av.v30-av-peci,
+html[data-theme="light"] body .v30-av.v30-av-peci,
+[data-theme="dark"] html body .v30-av.v30-av-peci {
+  width: 36px !important;
+  height: 36px !important;
+  flex: none !important;
+  border-radius: 11px !important;
+  background: linear-gradient(180deg, #DCFCE7, #BBF7D0) !important;
+  border: 1px solid rgba(4,120,87,.25) !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  box-shadow:
+    0 2px 6px rgba(4,120,87,.15),
+    0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+
+html body .v30-av.v30-av-peci .peci-fig,
+html body .v30-av.v30-av-peci svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html body .v30-av.v30-av-peci.v30-av-done,
+[data-theme="light"] html body .v30-av.v30-av-peci.v30-av-done {
+  background: linear-gradient(180deg, #F1F5F9, #E2E8F0) !important;
+  border-color: #CBD5E1 !important;
+  filter: saturate(.55) !important;
+}
+
+[data-theme="dark"] html body .v30-av.v30-av-peci {
+  background: linear-gradient(180deg, rgba(16,185,129,.20), rgba(4,120,87,.30)) !important;
+  border-color: rgba(52,211,153,.35) !important;
+}
+
+/* ── 3. SEARCH BOX — clean tapi timbul (raised neumorphic) ─────────── */
+html body .srch,
+html[data-theme="light"] body .srch {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 16px !important;
+  padding: 0 16px !important;
+  margin-bottom: 12px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 4px 12px rgba(15,23,42,.06),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+  transition: box-shadow .2s var(--e1), border-color .2s !important;
+}
+
+html body .srch:focus-within,
+html[data-theme="light"] body .srch:focus-within {
+  border-color: rgba(4,120,87,.40) !important;
+  box-shadow:
+    0 0 0 3px rgba(4,120,87,.10),
+    0 4px 14px rgba(4,120,87,.10),
+    0 1px 2px rgba(15,23,42,.04),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+html body .srch .srch-ic,
+html[data-theme="light"] body .srch .srch-ic {
+  color: #047857 !important;
+  font-size: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+html body .srch input,
+html[data-theme="light"] body .srch input {
+  flex: 1 !important;
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  color: #0A0A0A !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 13px 0 !important;
+  letter-spacing: -.01em !important;
+}
+
+html body .srch input::placeholder,
+html[data-theme="light"] body .srch input::placeholder {
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+}
+
+html body .srch .srch-clr,
+html[data-theme="light"] body .srch .srch-clr {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 50% !important;
+  width: 22px !important;
+  height: 22px !important;
+  color: #64748B !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all .15s !important;
+  flex-shrink: 0 !important;
+}
+html body .srch .srch-clr:hover,
+html[data-theme="light"] body .srch .srch-clr:hover {
+  background: #FEE2E2 !important;
+  color: #B91C1C !important;
+  border-color: #FCA5A5 !important;
+}
+
+[data-theme="dark"] html body .srch {
+  background: var(--surf) !important;
+  border-color: var(--line) !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.30),
+    0 4px 14px rgba(0,0,0,.20),
+    0 1px 0 rgba(255,255,255,.04) inset !important;
+}
+[data-theme="dark"] html body .srch input { color: #F8FAFC !important; }
+[data-theme="dark"] html body .srch input::placeholder { color: #64748B !important; }
+
+/* ── 4. PDF BUTTONS — clean raised (Kas RT, Kas Hadiran, Jadwal) ───── */
+html body .krt2-pdf-link,
+html body .kh2-pdf-link,
+html body .pdf-jadwal-btn,
+html[data-theme="light"] body .krt2-pdf-link,
+html[data-theme="light"] body .kh2-pdf-link,
+html[data-theme="light"] body .pdf-jadwal-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 16px !important;
+  border-radius: 14px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  color: #047857 !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.01em !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.06),
+    0 4px 12px rgba(15,23,42,.08),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+  transition: all .18s var(--e1) !important;
+}
+
+html body .krt2-pdf-link svg,
+html body .kh2-pdf-link svg,
+html body .pdf-jadwal-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  opacity: 1 !important;
+  color: #047857 !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+html body .krt2-pdf-link span,
+html body .kh2-pdf-link span {
+  text-decoration: none !important;
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+html body .krt2-pdf-link:hover,
+html body .kh2-pdf-link:hover,
+html body .pdf-jadwal-btn:hover {
+  background: linear-gradient(180deg, #FFFFFF, #F0FDF4) !important;
+  border-color: rgba(4,120,87,.30) !important;
+  color: #064E3B !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.06),
+    0 6px 16px rgba(4,120,87,.14),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+html body .krt2-pdf-link:hover svg,
+html body .kh2-pdf-link:hover svg,
+html body .pdf-jadwal-btn:hover svg {
+  color: #064E3B !important;
+}
+
+html body .krt2-pdf-link:active,
+html body .kh2-pdf-link:active,
+html body .pdf-jadwal-btn:active {
+  transform: scale(.97) !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.06),
+    0 2px 6px rgba(4,120,87,.10),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+[data-theme="dark"] html body .krt2-pdf-link,
+[data-theme="dark"] html body .kh2-pdf-link,
+[data-theme="dark"] html body .pdf-jadwal-btn {
+  background: var(--surf) !important;
+  border-color: var(--line) !important;
+  color: #34D399 !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.30),
+    0 4px 14px rgba(0,0,0,.25),
+    0 1px 0 rgba(255,255,255,.05) inset !important;
+}
+[data-theme="dark"] html body .krt2-pdf-link svg,
+[data-theme="dark"] html body .kh2-pdf-link svg,
+[data-theme="dark"] html body .pdf-jadwal-btn svg {
+  color: #34D399 !important;
+}
+[data-theme="dark"] html body .krt2-pdf-link span,
+[data-theme="dark"] html body .kh2-pdf-link span {
+  color: #34D399 !important;
 }
 </style>
 <script id="patch-final-js">
