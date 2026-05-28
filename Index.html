@@ -23563,9 +23563,21 @@ html[data-theme] body .hero .hero-amt {
       card('Belum Lunas', ICO_ALERT, '#DC2626', belumCnt + ' orang', 'down', 'Masih ada tagihan aktif');
   }
   function patchAll(){
-    try{ patchBeranda();    }catch(e){}
-    try{ patchKasHadiran(); }catch(e){}
-    try{ patchTalangan();   }catch(e){}
+    /* v10.2: USER REQUEST — disable card-card duplikasi di bawah hero.
+       Card 'Terkumpul/Talangan' di Beranda, 'Terkumpul/Disetor' di Kas Hadiran,
+       dan 'Lunas/Belum Lunas' di Talangan adalah DUPLIKASI dari info di hero
+       card itu sendiri (chip Saldo/Talangan, hb-row Belum/Sudah Lunas).
+       User: 'engga sadar ada card card baru di tambahin, hapus lah'.
+
+       Sekarang patchAll HANYA bertugas membersihkan summary cards & top-row
+       yang mungkin sudah ter-inject sebelumnya, tidak menambah baru. */
+    ['berandaSummary', 'kasHadiranSummary', 'talanganSummary'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.parentNode) el.parentNode.removeChild(el);
+    });
+    document.querySelectorAll('.hero-top-row').forEach(function(el){
+      if(el.parentNode) el.parentNode.removeChild(el);
+    });
   }
   /* ── Debounced patchAll agar MutationObserver tidak infinite loop ── */
   var _patchTimer = null;
@@ -30048,6 +30060,20 @@ html body .save-bar .btn:active {
 /* ── 17. SCROLLBAR ───────────────────────────────────────────────────── */
 [data-theme="dark"] *::-webkit-scrollbar-thumb { background: #334155 !important; }
 [data-theme="dark"] * { scrollbar-color: #334155 transparent !important; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   v10.2 — HIDE duplikasi summary cards (request user)
+   Card 'Terkumpul/Talangan/Lunas/Belum Lunas/Disetor' yang muncul di bawah
+   hero card adalah duplikasi info yang sudah ada di hero. User minta hapus.
+   CSS hide sebagai safety-net (JS patchAll juga sudah dinetralkan).
+   ════════════════════════════════════════════════════════════════════════ */
+html body .hero-summary-cards,
+html body .hero-top-row,
+html body #berandaSummary,
+html body #kasHadiranSummary,
+html body #talanganSummary {
+  display: none !important;
+}
 </style>
 <script id="patch-final-js">
 (function(){
