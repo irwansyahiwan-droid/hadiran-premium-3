@@ -25348,9 +25348,10 @@ html body.has-savebar #mainScrollWrap#mainScrollWrap {
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
     var navHidden  = document.body.classList.contains('nav-hidden');
-    /* v9.13: sinkron dengan clampClearance & fixBottomClearance.
-       Tambah cek navHidden + turunkan nilai (180→80, 120→0). */
-    var pb = navHidden ? '0px' : (hasSavebar ? '80px' : '0px');
+    /* v9.15: Save-bar TOP at ~186px (vs nav TOP at ~100px) — savebar mode
+       butuh +86px MORE buffer agar gap above-UI sama dengan page lain.
+       Target gap 150px above bottom UI: savebar=180px, default=80px. */
+    var pb = navHidden ? '0px' : (hasSavebar ? '180px' : '80px');
     wrap.style.setProperty('padding-bottom', pb, 'important');
   }
 
@@ -26306,9 +26307,9 @@ body #mainScrollWrap {
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
     var navHidden  = document.body.classList.contains('nav-hidden');
-    /* v9.13: turunkan dari 180/120/0 → 80/0/0 supaya gap visible
-       di max-scroll tidak terlalu besar (~40-60px target). */
-    var pb = navHidden ? '0px' : (hasSavebar ? '80px' : '0px');
+    /* v9.15: savebar mode butuh +86px buffer karena save-bar TOP higher
+       dari nav TOP. Target 150px gap above bottom UI. */
+    var pb = navHidden ? '0px' : (hasSavebar ? '180px' : '80px');
     /* Hanya update jika perlu */
     if (wrap.style.paddingBottom !== pb) {
       wrap.style.setProperty('padding-bottom', pb, 'important');
@@ -29164,13 +29165,13 @@ html[data-theme] body #jadwalList {
     var cl=document.body.classList;
     var hasSavebar=cl.contains('has-savebar');
     var navHidden=cl.contains('nav-hidden');
-    /* v9.13 fix: turunkan 180/120/0 → 80/0/0. Buffer pgAbsensi sebelumnya
-       gap ~368px di max-scroll = "warna bg" yang user lihat. Sekarang
-       target gap ~40-60px (konten habis tepat di atas nav/save-bar). */
+    /* v9.15: Save-bar TOP at ~186px from viewport bottom (vs nav TOP ~100px).
+       Save-bar mode butuh +86px MORE buffer untuk gap-above-UI sama dengan
+       halaman lain. Target 150px gap. Values: savebar=180, default=80. */
     var pb;
     if(navHidden) pb='0px';
-    else if(hasSavebar) pb='80px';
-    else pb='0px';
+    else if(hasSavebar) pb='180px';
+    else pb='80px';
     if(wrap.style.paddingBottom!==pb){
       wrap.style.setProperty('padding-bottom',pb,'important');
     }
