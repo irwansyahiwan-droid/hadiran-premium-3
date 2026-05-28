@@ -2996,7 +2996,7 @@ if(!done){h+='<button class="btn btn-G btn-xs" onclick="mulaiAbsen('+j.noTarikan
 else{h+='<button class="btn-recalc" onclick="hitungUlang('+j.noTarikan+',\''+j.tanggal+'\',\''+sbA+'\')">↺ Hitung Ulang</button>';}
 h+='</div>';
 });
-document.getElementById('jadwalList').innerHTML=h+'<div id="jdScrollSpacer" style="height:320px;min-height:320px;display:block;width:100%;pointer-events:none" aria-hidden="true"></div>';
+document.getElementById('jadwalList').innerHTML=h+'<div id="jdScrollSpacer" style="height:0;min-height:0;display:none;width:100%;pointer-events:none" aria-hidden="true"></div>';
 },function(){document.getElementById('jadwalList').innerHTML='<div class="alert aR"><span class="alert-ic">❌</span><span>Gagal memuat</span></div>';});
 }
 function mulaiAbsen(no,tgl,sb){
@@ -25347,8 +25347,10 @@ html body.has-savebar #mainScrollWrap#mainScrollWrap {
     var wrap = document.getElementById('mainScrollWrap');
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
-    /* v9.11: konsisten dengan clampClearance & applyPageFix → 120/180px */
-    var pb = hasSavebar ? '180px' : '120px';
+    var navHidden  = document.body.classList.contains('nav-hidden');
+    /* v9.13: sinkron dengan clampClearance & fixBottomClearance.
+       Tambah cek navHidden + turunkan nilai (180→80, 120→0). */
+    var pb = navHidden ? '0px' : (hasSavebar ? '80px' : '0px');
     wrap.style.setProperty('padding-bottom', pb, 'important');
   }
 
@@ -25436,26 +25438,14 @@ html body.has-savebar #mainScrollWrap#mainScrollWrap {
        3. JS inline style pada #pgAbsensi agar tidak bisa di-override CSS
      ════════════════════════════════════════════════════════════════════════ -->
 <style id="patch-v120-jadwal-bottom">
-
-
-/* ════ JADWAL PAGE — guaranteed bottom clearance for floating nav ════
-   Nav: 62px + bottom 4px + safe-area ~34px = ~100px from viewport bottom.
-   We give 120px clearance so last item is comfortably above the nav. */
-html body #pgAbsensi#pgAbsensi#pgAbsensi {
-  padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px)) !important;
-}
-
-
-/* ════ Scroll spacer di jadwal list ════ */
+/* v9.13: REMOVED. Sebelumnya rule ini override .page padding-bottom
+   dengan triple-id specificity (3,0,2) — bikin pgAbsensi unique buffer.
+   Sekarang HANYA reset jdScrollSpacer ke 0 supaya tidak menambah buffer. */
 #jdScrollSpacer {
-  display: block !important;
-  height: 200px !important;
-  min-height: 200px !important;
-  width: 100% !important;
-  pointer-events: none !important;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
 }
-
-
 </style>
 
 
@@ -25994,10 +25984,10 @@ body.nav-pin.has-savebar #v123Spacer {
 }
 
 
-/* 2. Boost v122ScrollSpacer untuk clearance save-bar (220px > 182px) */
+/* 2. v9.13: Reduce v122ScrollSpacer dari 220px → 60px supaya buffer tidak excessive */
 #v122ScrollSpacer {
-  height: 220px !important;
-  min-height: 220px !important;
+  height: 60px !important;
+  min-height: 60px !important;
   display: block !important;
   visibility: hidden !important;
 }
@@ -26047,12 +26037,12 @@ body #mainScrollWrap {
   }
 
 
-  /* Boost v122ScrollSpacer: 220px untuk save-bar clearance */
+  /* Boost v122ScrollSpacer: v9.13 reduced 220px → 60px */
   function boostSpacer() {
     var sp = document.getElementById(BOOST_ID);
     if (!sp) return;
-    sp.style.setProperty('height',     '220px',  'important');
-    sp.style.setProperty('min-height', '220px',  'important');
+    sp.style.setProperty('height',     '60px',   'important');
+    sp.style.setProperty('min-height', '60px',   'important');
     sp.style.setProperty('display',    'block',  'important');
     sp.style.setProperty('visibility', 'hidden', 'important');
   }
@@ -26316,9 +26306,9 @@ body #mainScrollWrap {
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
     var navHidden  = document.body.classList.contains('nav-hidden');
-    /* v9.11: turunkan dari 280/380px → 120/180px supaya buffer kumulatif
-       tidak melebihi viewport. */
-    var pb = navHidden ? '0px' : (hasSavebar ? '180px' : '120px');
+    /* v9.13: turunkan dari 180/120/0 → 80/0/0 supaya gap visible
+       di max-scroll tidak terlalu besar (~40-60px target). */
+    var pb = navHidden ? '0px' : (hasSavebar ? '80px' : '0px');
     /* Hanya update jika perlu */
     if (wrap.style.paddingBottom !== pb) {
       wrap.style.setProperty('padding-bottom', pb, 'important');
@@ -29156,10 +29146,9 @@ html[data-theme] body #jadwalList {
   padding-bottom: 16px !important;
 }
 
-/* Make sure inner scroll wrapper accounts for nav too */
-html body #mainScrollWrap > section.page#pgAbsensi {
-  min-height: calc(100vh - var(--nav, 68px) - env(safe-area-inset-top, 0px)) !important;
-}
+/* v9.13: REMOVED min-height rule untuk pgAbsensi.
+   Sebelumnya rule ini memaksa pgAbsensi setinggi viewport — UNIK pgAbsensi,
+   tidak ada di pgKas/pgKasRT/pgTalangan. Penyumbang 'pgAbsensi different'. */
 
 /* ════════════════════════════════════════════════════════════════════════
    v9.12: REMOVED. ::after pseudo-element dan jadwalList::after di-DELETE.
@@ -29175,13 +29164,13 @@ html body #mainScrollWrap > section.page#pgAbsensi {
     var cl=document.body.classList;
     var hasSavebar=cl.contains('has-savebar');
     var navHidden=cl.contains('nav-hidden');
-    /* v9.11 fix: turunkan dari 280/380px → 120/180px. Buffer kumulatif
-       sebelumnya ~1980px (jauh > viewport ~800px) bikin scroll-bottom
-       mendarat di kekosongan. Sekarang ~700px total, sesuai viewport. */
+    /* v9.13 fix: turunkan 180/120/0 → 80/0/0. Buffer pgAbsensi sebelumnya
+       gap ~368px di max-scroll = "warna bg" yang user lihat. Sekarang
+       target gap ~40-60px (konten habis tepat di atas nav/save-bar). */
     var pb;
-    if(hasSavebar) pb='180px';
-    else if(navHidden) pb='0px';
-    else pb='120px';
+    if(navHidden) pb='0px';
+    else if(hasSavebar) pb='80px';
+    else pb='0px';
     if(wrap.style.paddingBottom!==pb){
       wrap.style.setProperty('padding-bottom',pb,'important');
     }
