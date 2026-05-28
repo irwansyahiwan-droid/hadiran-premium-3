@@ -2698,7 +2698,7 @@ cls='tidak';icoCls='tidak';badgeCls='tidak';badgeTxt='— Tidak';
 }
 html+='<div class="pub-member-item '+cls+'">'+
 '<div class="pub-no-urut">'+noUrut+'</div>'+
-'<div class="pub-av '+icoCls+'">'+init+'</div>'+
+'<div class="pub-av pub-av-peci '+icoCls+'">'+peciAvatar()+'</div>'+
 '<div class="pub-member-name">'+esc(a.nama)+'</div>'+
 '<span class="pub-badge '+badgeCls+'">'+badgeTxt+'</span></div>';
 });
@@ -2996,7 +2996,7 @@ if(!done){h+='<button class="btn btn-G btn-xs" onclick="mulaiAbsen('+j.noTarikan
 else{h+='<button class="btn-recalc" onclick="hitungUlang('+j.noTarikan+',\''+j.tanggal+'\',\''+sbA+'\')">↺ Hitung Ulang</button>';}
 h+='</div>';
 });
-document.getElementById('jadwalList').innerHTML=h+'<div id="jdScrollSpacer" style="height:200px;min-height:200px;display:block;width:100%;pointer-events:none" aria-hidden="true"></div>';
+document.getElementById('jadwalList').innerHTML=h+'<div id="jdScrollSpacer" style="height:320px;min-height:320px;display:block;width:100%;pointer-events:none" aria-hidden="true"></div>';
 },function(){document.getElementById('jadwalList').innerHTML='<div class="alert aR"><span class="alert-ic">❌</span><span>Gagal memuat</span></div>';});
 }
 function mulaiAbsen(no,tgl,sb){
@@ -29076,6 +29076,140 @@ html body .pdf-jadwal-btn:active {
 [data-theme="dark"] html body .krt2-pdf-link span,
 [data-theme="dark"] html body .kh2-pdf-link span {
   color: #34D399 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PREMIUM POLISH v9.7 — TARGETED FIXES (per user feedback round 6)
+   1. Warga "Daftar Anggota" — peci avatar (consistent dengan halaman lain)
+   2. pgAbsensi (mode bendahara jadwal) — padding-bottom DEFINITIF
+      supaya item terakhir tidak tertutup floating nav
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. PUB AV PECI — consistent peci avatar di Daftar Anggota warga ── */
+html body .pub-av.pub-av-peci,
+html[data-theme="light"] body .pub-av.pub-av-peci {
+  width: 40px !important;
+  height: 40px !important;
+  flex: none !important;
+  border-radius: 13px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: relative !important;
+  font-size: 0 !important;        /* hide any text fallback */
+  color: transparent !important;  /* hide any leftover init letter */
+}
+
+html body .pub-av.pub-av-peci .peci-fig,
+html body .pub-av.pub-av-peci svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* State variants — keep colored bg (pakai existing icoCls) tapi softer
+   supaya peci tetap jelas */
+html body .pub-member-item .pub-av.pub-av-peci,
+html body .pub-member-item .pub-av.pub-av-peci.hadir {
+  background: linear-gradient(180deg, #DCFCE7, #BBF7D0) !important;
+  border: 1px solid rgba(4,120,87,.30) !important;
+  box-shadow:
+    0 2px 6px rgba(4,120,87,.16),
+    0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+
+html body .pub-member-item .pub-av.pub-av-peci.titip,
+html body .pub-member-item .pub-av.pub-av-peci.sb {
+  background: linear-gradient(180deg, #FEF3C7, #FDE68A) !important;
+  border: 1px solid rgba(180,83,9,.30) !important;
+  box-shadow:
+    0 2px 6px rgba(180,83,9,.16),
+    0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+
+html body .pub-member-item .pub-av.pub-av-peci.tidak {
+  background: linear-gradient(180deg, #F1F5F9, #E2E8F0) !important;
+  border: 1px solid #CBD5E1 !important;
+  filter: saturate(.55) !important;
+  box-shadow:
+    0 2px 6px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+
+html body .pub-member-item .pub-av.pub-av-peci.sudah-av {
+  background: linear-gradient(180deg, #FEF3C7, #FDE68A) !important;
+  border: 1px solid rgba(180,83,9,.30) !important;
+  filter: saturate(.65) !important;
+  position: relative !important;
+}
+/* Tambahkan checkmark overlay untuk sudah-selesai */
+html body .pub-member-item .pub-av.pub-av-peci.sudah-av::after {
+  content: '✓' !important;
+  position: absolute !important;
+  top: -4px !important;
+  right: -4px !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(180deg, #10B981, #047857) !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0 1px 3px rgba(4,120,87,.40) !important;
+  filter: saturate(1) !important;
+  pointer-events: none !important;
+}
+
+[data-theme="dark"] html body .pub-member-item .pub-av.pub-av-peci,
+[data-theme="dark"] html body .pub-member-item .pub-av.pub-av-peci.hadir {
+  background: linear-gradient(180deg, rgba(16,185,129,.18), rgba(4,120,87,.28)) !important;
+  border-color: rgba(52,211,153,.35) !important;
+}
+[data-theme="dark"] html body .pub-member-item .pub-av.pub-av-peci.titip,
+[data-theme="dark"] html body .pub-member-item .pub-av.pub-av-peci.sb {
+  background: linear-gradient(180deg, rgba(245,158,11,.20), rgba(180,83,9,.30)) !important;
+  border-color: rgba(252,211,77,.35) !important;
+}
+[data-theme="dark"] html body .pub-member-item .pub-av.pub-av-peci.tidak {
+  background: linear-gradient(180deg, rgba(100,116,139,.22), rgba(71,85,105,.30)) !important;
+  border-color: rgba(148,163,184,.30) !important;
+}
+
+/* ── 2. PG ABSENSI — DEFINITIVE PADDING BOTTOM (anti-tertutup-nav) ──── */
+/* Specificity 0,2,2,1 with quadrupled-id — pasti menang dari semua rule */
+html body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
+html[data-theme] body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
+html[data-theme="light"] body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
+html[data-theme="dark"]  body section#pgAbsensi#pgAbsensi#pgAbsensi.page {
+  padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px) + 120px) !important;
+}
+
+html body.has-savebar section#pgAbsensi#pgAbsensi#pgAbsensi.page,
+html[data-theme] body.has-savebar section#pgAbsensi#pgAbsensi#pgAbsensi.page {
+  padding-bottom: calc(220px + env(safe-area-inset-bottom, 0px) + 140px) !important;
+}
+
+/* Boost mainScrollWrap scroll-padding so anchor scrolls land above nav */
+html body #mainScrollWrap,
+html[data-theme] body #mainScrollWrap {
+  scroll-padding-bottom: calc(var(--nav, 68px) + env(safe-area-inset-bottom, 0px) + 48px) !important;
+}
+
+/* Boost #jadwalList own bottom buffer (already has spacer, give extra) */
+html body #jadwalList,
+html[data-theme] body #jadwalList {
+  padding-bottom: 16px !important;
+}
+
+/* Make sure inner scroll wrapper accounts for nav too */
+html body #mainScrollWrap > section.page#pgAbsensi {
+  min-height: calc(100vh - var(--nav, 68px) - env(safe-area-inset-top, 0px)) !important;
 }
 </style>
 <script id="patch-final-js">
