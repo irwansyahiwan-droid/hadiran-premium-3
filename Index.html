@@ -28010,6 +28010,462 @@ html[data-theme="light"] body #bottomNav .ni.on .ni-lbl {
 [data-theme="dark"] html body #bottomNav .ni.on .ni-lbl {
   color: #34D399 !important; font-weight: 800 !important;
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   PREMIUM POLISH v9.4 — NEUMORPHIC + EMERALD/FOREST DESIGN SYSTEM
+   - Off-white solid bg, neumorphic floating cards (soft glass)
+   - Hero: rich emerald → forest gradient
+   - Belum: refined burnt amber/orange + Lunas/Bayar: emerald gloss
+   - Edit: outline style (not filled)
+   - Date / Sohibul Bait labels: darker, sharper
+   - Nav active: emerald icon + indicator line ring + clean inactive
+   - KPI: bold, hue-matched to icon
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── A. PAGE — clean off-white solid ──────────────────────────────── */
+html body,
+html[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse at 60% -10%, rgba(4,120,87,.04), transparent 50%),
+    #F4F2EC !important;       /* clean off-white solid, sedikit hangat */
+}
+
+/* ── B. NEUMORPHIC FLOATING CARDS — pure white + dual shadow ─────── */
+html body .card,
+html body .tal-card,
+html[data-theme="light"] body .card,
+html[data-theme="light"] body .tal-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 22px !important;
+  box-shadow:
+    /* soft floating shadow */
+    0 1px 2px rgba(15,23,42,.04),
+    0 8px 24px -6px rgba(15,23,42,.10),
+    0 16px 40px -10px rgba(15,23,42,.06),
+    /* top inner highlight (neumorphic) */
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+/* Stat KPI cards — same neumorphic treatment, override colored variants */
+html body .sc,
+html body .sc.b, html body .sc.s, html body .sc.g, html body .sc.r,
+html[data-theme="light"] body .sc,
+html[data-theme="light"] body .sc.b,
+html[data-theme="light"] body .sc.s,
+html[data-theme="light"] body .sc.g,
+html[data-theme="light"] body .sc.r {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 8px 22px -6px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+/* Surf utilities — slightly tinted */
+html body .surf2,
+html body .surf3,
+html[data-theme="light"] body .surf2,
+html[data-theme="light"] body .surf3 {
+  background: #EFEDE6 !important;
+}
+
+/* Sohibul Bait selector box — same treatment */
+html body .sb-sel-box,
+html[data-theme="light"] body .sb-sel-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 6px 18px -6px rgba(15,23,42,.10),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+/* ── C. HERO CARD — rich emerald/forest gradient ──────────────────── */
+html body .hero,
+html[data-theme="light"] body .hero {
+  background:
+    radial-gradient(ellipse at 80% -20%, rgba(255,255,255,.18), transparent 60%),
+    linear-gradient(155deg, #022C22 0%, #064E3B 35%, #047857 70%, #059669 100%) !important;
+  border-radius: 26px !important;
+  box-shadow:
+    0 12px 32px -8px rgba(4,120,87,.40),
+    0 4px 12px rgba(2,44,34,.20),
+    0 1px 0 rgba(255,255,255,.20) inset !important;
+}
+html body .hero-amt,
+html[data-theme="light"] body .hero-amt {
+  font-weight: 900 !important;
+  letter-spacing: -1.4px !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(2,44,34,.25) !important;
+}
+
+/* ── D. STATUS "BELUM" — burnt amber/orange (sophisticated) ───────── */
+html body .stt-belum,
+html body .tal-status.belum,
+html body .tal-card .tal-status-belum,
+html body .tal-card.belum .stt-belum {
+  background: linear-gradient(180deg, #F59E0B, #B45309) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(120,53,15,.45) !important;
+  box-shadow:
+    0 3px 8px rgba(180,83,9,.30),
+    0 1px 0 rgba(255,255,255,.35) inset !important;
+  text-shadow: 0 1px 1px rgba(120,53,15,.45) !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  font-size: 10.5px !important;
+  padding: 4px 12px !important;
+}
+
+/* ── E. STATUS "LUNAS" — emerald gloss ────────────────────────────── */
+html body .stt-lunas,
+html body .tal-card.lunas .stt-lunas {
+  background: linear-gradient(180deg, #10B981, #047857) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(2,44,34,.40) !important;
+  box-shadow:
+    0 3px 8px rgba(4,120,87,.32),
+    0 1px 0 rgba(255,255,255,.35) inset !important;
+  text-shadow: 0 1px 1px rgba(2,44,34,.40) !important;
+  font-weight: 800 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  font-size: 10.5px !important;
+  padding: 4px 12px !important;
+}
+
+/* ── F. BUTTON BAYAR — emerald with subtle gloss ──────────────────── */
+html body .tal-act.tal-act-bayar {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #10B981 0%, #047857 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(2,44,34,.50) !important;
+  border-radius: 14px !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  letter-spacing: .015em !important;
+  padding: 11px 18px !important;
+  box-shadow:
+    0 5px 14px rgba(4,120,87,.36),
+    0 1px 2px rgba(2,44,34,.20),
+    0 1px 0 rgba(255,255,255,.40) inset,
+    0 -1px 0 rgba(2,44,34,.20) inset !important;
+  text-shadow: 0 1px 1px rgba(2,44,34,.40) !important;
+}
+html body .tal-act.tal-act-bayar:hover {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #059669 0%, #064E3B 100%) !important;
+}
+
+/* ── G. BUTTON EDIT — outline style, secondary ────────────────────── */
+html body .tal-act.tal-act-edit {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #94A3B8 !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 10px 18px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.06),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+  text-shadow: none !important;
+}
+html body .tal-act.tal-act-edit:hover {
+  background: #F1F5F9 !important;
+  border-color: #475569 !important;
+  color: #020617 !important;
+}
+
+/* ── H. NUMERIC HEADLINE — near-black + extra bold ────────────────── */
+html body .tal-card .tal-card-amt,
+html body .tal-card.belum .tal-card-amt,
+html[data-theme="light"] body .tal-card .tal-card-amt {
+  color: #0A0A0A !important;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.02em !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+  font-feature-settings: 'tnum' 1, 'lnum' 1 !important;
+  line-height: 1.1 !important;
+  text-shadow: none !important;
+}
+html body .tal-card.lunas .tal-card-amt {
+  color: #047857 !important;
+}
+
+/* Other amounts — same treatment */
+html body .kas-amt,
+html body .rek-amt,
+html body .kbs-card-nom,
+html body .abt-val,
+html[data-theme="light"] body .kas-amt {
+  font-weight: 900 !important;
+  letter-spacing: -.6px !important;
+  color: #0A0A0A !important;
+}
+
+/* ── I. NAMA & SOHIBUL BAIT LABELS — darker, slightly bolder ─────── */
+html body .tal-card .tal-card-name,
+html[data-theme="light"] body .tal-card .tal-card-name {
+  color: #0A0A0A !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  letter-spacing: -.01em !important;
+  line-height: 1.25 !important;
+}
+
+/* Sohibul Bait selector — name dark + role darker too */
+html body .sb-sel-name,
+html[data-theme="light"] body .sb-sel-name {
+  color: #0A0A0A !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+}
+html body .sb-sel-note,
+html[data-theme="light"] body .sb-sel-note {
+  color: #334155 !important;
+  font-weight: 600 !important;
+  font-size: 11.5px !important;
+}
+
+/* ── J. META / DATE — much darker + sharper ──────────────────────── */
+html body .tal-card .tal-card-meta,
+html[data-theme="light"] body .tal-card .tal-card-meta {
+  color: #1E293B !important;        /* slate-800, was slate-500 */
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  margin-top: 4px !important;
+  letter-spacing: -.005em !important;
+}
+
+/* Generic labels in cards — darker */
+html body .card .card-hdr-t,
+html[data-theme="light"] body .card .card-hdr-t {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+/* Section titles */
+html body .sec-ttl,
+html[data-theme="light"] body .sec-ttl {
+  color: #334155 !important;
+  font-weight: 800 !important;
+}
+
+/* ── K. KPI NUMBERS — bold, solid hue match ──────────────────────── */
+html body .sc.b .sc-val,
+html[data-theme="light"] body .sc.b .sc-val {
+  color: #1D4ED8 !important;             /* royal blue */
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+html body .sc.s .sc-val,
+html[data-theme="light"] body .sc.s .sc-val {
+  color: #B45309 !important;             /* burnt amber */
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+html body .sc.g .sc-val,
+html[data-theme="light"] body .sc.g .sc-val {
+  color: #047857 !important;             /* emerald */
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+html body .sc.r .sc-val,
+html[data-theme="light"] body .sc.r .sc-val {
+  color: #B91C1C !important;
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.8px !important;
+  text-shadow: none !important;
+  line-height: 1 !important;
+}
+
+/* KPI label */
+html body .sc .sc-lbl,
+html[data-theme="light"] body .sc .sc-lbl {
+  color: #1E293B !important;
+  font-weight: 800 !important;
+  letter-spacing: .6px !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  margin-top: 4px !important;
+}
+
+/* KPI icon — slightly larger, hue-tinted bg circle */
+html body .sc .sc-ic,
+html[data-theme="light"] body .sc .sc-ic {
+  font-size: 22px !important;
+  margin-bottom: 2px !important;
+}
+
+/* ── L. BOTTOM NAV — emerald icon + indicator line ───────────────── */
+
+/* Inactive — slate-700, opacity 1, jelas */
+html body #bottomNav .ni,
+html[data-theme="light"] body #bottomNav .ni {
+  color: #334155 !important;
+  opacity: 1 !important;
+}
+html body #bottomNav .ni .ni-lbl,
+html[data-theme="light"] body #bottomNav .ni .ni-lbl {
+  color: #334155 !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+  font-size: 9.5px !important;
+  letter-spacing: .25px !important;
+}
+html body #bottomNav .ni .ni-ico,
+html[data-theme="light"] body #bottomNav .ni .ni-ico {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+html body #bottomNav .ni .ni-ico svg,
+html[data-theme="light"] body #bottomNav .ni .ni-ico svg {
+  color: #334155 !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Active — emerald icon on soft mint pill + glowing indicator */
+html body #bottomNav .ni.on,
+html[data-theme="light"] body #bottomNav .ni.on {
+  color: #047857 !important;
+  position: relative !important;
+}
+html body #bottomNav .ni.on::after,
+html[data-theme="light"] body #bottomNav .ni.on::after {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  top: 4px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 22px !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  background: linear-gradient(90deg, #10B981, #047857) !important;
+  box-shadow: 0 1px 3px rgba(4,120,87,.40) !important;
+  pointer-events: none !important;
+}
+html body #bottomNav .ni.on .ni-ico,
+html[data-theme="light"] body #bottomNav .ni.on .ni-ico {
+  background: linear-gradient(180deg, #D1FAE5, #A7F3D0) !important;
+  border: 1px solid rgba(4,120,87,.30) !important;
+  box-shadow:
+    0 2px 8px rgba(4,120,87,.20),
+    0 0 0 4px rgba(16,185,129,.08),
+    0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+html body #bottomNav .ni.on .ni-ico svg,
+html[data-theme="light"] body #bottomNav .ni.on .ni-ico svg {
+  color: #047857 !important;            /* emerald icon, NOT white */
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  filter: none !important;
+  transform: translateY(-1px) scale(1.06) !important;
+  text-shadow: none !important;
+}
+html body #bottomNav .ni.on .ni-lbl,
+html[data-theme="light"] body #bottomNav .ni.on .ni-lbl {
+  color: #047857 !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
+
+/* ── M. DARK MODE mirror ──────────────────────────────────────────── */
+[data-theme="dark"] html body { background: var(--bg) !important; }
+
+[data-theme="dark"] html body .card,
+[data-theme="dark"] html body .tal-card,
+[data-theme="dark"] html body .sc,
+[data-theme="dark"] html body .sc.b,
+[data-theme="dark"] html body .sc.s,
+[data-theme="dark"] html body .sc.g,
+[data-theme="dark"] html body .sc.r,
+[data-theme="dark"] html body .sb-sel-box {
+  background: var(--surf) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.30),
+    0 8px 22px -6px rgba(0,0,0,.50),
+    0 1px 0 rgba(255,255,255,.04) inset !important;
+}
+
+[data-theme="dark"] html body .tal-card .tal-card-amt,
+[data-theme="dark"] html body .tal-card.belum .tal-card-amt {
+  color: #F8FAFC !important; font-weight: 900 !important; font-size: 19px !important;
+}
+[data-theme="dark"] html body .tal-card.lunas .tal-card-amt { color: #34D399 !important; }
+[data-theme="dark"] html body .tal-card .tal-card-name {
+  color: #F8FAFC !important; font-weight: 800 !important; font-size: 15px !important;
+}
+[data-theme="dark"] html body .tal-card .tal-card-meta {
+  color: #CBD5E1 !important; font-weight: 600 !important;
+}
+[data-theme="dark"] html body .sb-sel-name { color: #F8FAFC !important; font-weight: 800 !important; }
+[data-theme="dark"] html body .sb-sel-note { color: #CBD5E1 !important; font-weight: 600 !important; }
+
+[data-theme="dark"] html body .sc.b .sc-val { color: #93C5FD !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.s .sc-val { color: #FCD34D !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.g .sc-val { color: #6EE7B7 !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc.r .sc-val { color: #FCA5A5 !important; font-weight: 900 !important; font-size: 30px !important; text-shadow: none !important; }
+[data-theme="dark"] html body .sc .sc-lbl { color: #CBD5E1 !important; font-weight: 800 !important; }
+
+[data-theme="dark"] html body #bottomNav .ni,
+[data-theme="dark"] html body #bottomNav .ni .ni-lbl {
+  color: #CBD5E1 !important; opacity: 1 !important; font-weight: 700 !important;
+}
+[data-theme="dark"] html body #bottomNav .ni .ni-ico svg {
+  color: #CBD5E1 !important; fill: currentColor !important; stroke: currentColor !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on::after {
+  background: linear-gradient(90deg, #10B981, #34D399) !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico {
+  background: linear-gradient(180deg, rgba(16,185,129,.25), rgba(6,95,70,.35)) !important;
+  border: 1px solid rgba(52,211,153,.40) !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.45),
+    0 0 0 4px rgba(16,185,129,.10),
+    0 1px 0 rgba(255,255,255,.10) inset !important;
+}
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico svg { color: #34D399 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on,
+[data-theme="dark"] html body #bottomNav .ni.on .ni-lbl {
+  color: #34D399 !important; font-weight: 800 !important;
+}
+
+[data-theme="dark"] html body .tal-act.tal-act-edit {
+  background: var(--surf2) !important;
+  color: #F1F5F9 !important;
+  border: 1.5px solid var(--line2) !important;
+}
+[data-theme="dark"] html body .tal-act.tal-act-edit:hover {
+  background: var(--surf3) !important;
+  border-color: #64748B !important;
+}
 </style>
 <script id="patch-final-js">
 (function(){
