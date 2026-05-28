@@ -29155,6 +29155,584 @@ html[data-theme] body #jadwalList {
    v9.12: REMOVED. ::after pseudo-element dan jadwalList::after di-DELETE.
    pgAbsensi akan inherit padding-bottom default dari .page rule.
    ════════════════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════════
+   v10.0 — FINAL POLISH (premium UI refinement)
+   Fokus: header alignment, hero scale, minimalist icons, pastel alert,
+          uniform tags & buttons, kas color coding, typography hierarchy
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. HEADER (#topbar) — balanced spacing, proportional gaps ──────── */
+html body #topbar .tb-in {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 16px 10px !important;
+}
+
+html body #topbar .tb-logo {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 8px rgba(4,120,87,.20), 0 1px 0 rgba(255,255,255,.85) inset !important;
+}
+
+html body #topbar .tb-txt {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+html body #topbar .tb-name {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: #0A0A0A !important;
+  letter-spacing: -.3px !important;
+  line-height: 1.15 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+html body #topbar .tb-role {
+  font-size: 11px !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  margin-top: 2px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+html body #topbar .tb-refresh {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  color: #475569 !important;
+  flex-shrink: 0 !important;
+  transition: all .18s var(--e1) !important;
+}
+html body #topbar .tb-refresh:hover {
+  background: #F1F5F9 !important;
+  color: #047857 !important;
+}
+
+html body #topbar .tb-badge {
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .3px !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* ─── 2. HERO AMOUNT — bigger, bolder, premium scale ───────────────── */
+html body .hero-amt,
+html[data-theme="light"] body .hero-amt {
+  font-size: 42px !important;
+  font-weight: 900 !important;
+  letter-spacing: -1.6px !important;
+  line-height: 1.05 !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(2,44,34,.30) !important;
+  margin-bottom: 6px !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+}
+
+html body .hero-rp,
+html[data-theme="light"] body .hero-rp {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  opacity: .80 !important;
+  letter-spacing: 0 !important;
+  margin-right: 4px !important;
+}
+
+html body .hero-ey,
+html body .hero-label,
+html[data-theme="light"] body .hero-ey {
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,.72) !important;
+  margin-bottom: 8px !important;
+}
+
+html body .hero-note,
+html[data-theme="light"] body .hero-note {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: rgba(255,255,255,.78) !important;
+  margin-bottom: 14px !important;
+  letter-spacing: -.05px !important;
+}
+
+/* ─── 3. HERO CHIPS — minimalist icons, consistent padding ──────────── */
+html body .hero .hero-chip,
+html[data-theme="light"] body .hero .hero-chip {
+  padding: 10px 11px !important;
+  border-radius: 13px !important;
+  gap: 4px !important;
+  background: rgba(255,255,255,.14) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.14),
+    0 1px 0 rgba(255,255,255,.20) inset !important;
+}
+
+html body .hero .hero-chip .chip-ic,
+html[data-theme="light"] body .hero .hero-chip .chip-ic {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.30)) !important;
+  margin-bottom: 1px !important;
+}
+
+/* ─── 4. KPI STAT CARDS — minimal flat icons, uniform spacing ───────── */
+html body .sg.sg3,
+html[data-theme="light"] body .sg.sg3 {
+  gap: 10px !important;
+  margin-bottom: 14px !important;
+}
+
+html body .sc,
+html[data-theme="light"] body .sc {
+  padding: 16px 12px 14px !important;
+}
+
+html body .sc .sc-ic,
+html[data-theme="light"] body .sc .sc-ic {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;       /* rounded-square, more modern than circle */
+  font-size: 19px !important;
+  margin-bottom: 6px !important;
+  box-shadow:
+    0 2px 6px rgba(15,23,42,.08),
+    0 1px 0 rgba(255,255,255,.55) inset !important;
+}
+
+/* ─── 5. ALERT — Talangan Belum Lunas softer pastel + sharper icon ──── */
+html body .alert,
+html[data-theme="light"] body .alert {
+  padding: 13px 15px !important;
+  border-radius: 14px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  align-items: center !important;
+  gap: 11px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 4px 12px rgba(15,23,42,.05) !important;
+}
+
+html body .alert .alert-ic,
+html[data-theme="light"] body .alert .alert-ic {
+  font-size: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* aS = amber alert (Talangan Belum Lunas) — soft pastel, sharp icon */
+html body .alert.aS,
+html[data-theme="light"] body .alert.aS {
+  background: linear-gradient(180deg, #FEF9C3, #FEF3C7) !important;
+  border: 1px solid #FDE68A !important;
+  color: #78350F !important;
+}
+html body .alert.aS .alert-ic,
+html[data-theme="light"] body .alert.aS .alert-ic {
+  color: #B45309 !important;
+  filter: drop-shadow(0 1px 2px rgba(180,83,9,.20)) !important;
+}
+
+[data-theme="dark"] html body .alert.aS {
+  background: linear-gradient(180deg, rgba(245,158,11,.12), rgba(180,83,9,.10)) !important;
+  border-color: rgba(252,211,77,.30) !important;
+  color: #FCD34D !important;
+}
+
+/* ─── 6. JADWAL BERIKUTNYA — aligned rows, uniform tag size ─────────── */
+html body .jdb-item,
+html body .jd-item.jdb-item,
+html[data-theme="light"] body .jdb-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+  margin-bottom: 8px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 4px 12px rgba(15,23,42,.05),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+
+html body .jdb-item .jd-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+html body .jdb-item .jd-name,
+html[data-theme="light"] body .jdb-item .jd-name {
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: #0A0A0A !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.01em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+html body .jdb-item .jd-tgl,
+html[data-theme="light"] body .jdb-item .jd-tgl {
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  margin-top: 3px !important;
+}
+
+/* Uniform tag (TERJADWAL) — consistent size + padding */
+html body .tag,
+html[data-theme="light"] body .tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 5px 11px !important;
+  border-radius: 999px !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .6px !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  line-height: 1.2 !important;
+}
+
+html body .tag.tS,
+html[data-theme="light"] body .tag.tS {
+  background: linear-gradient(180deg, #DBEAFE, #BFDBFE) !important;
+  color: #1E40AF !important;
+  border: 1px solid #93C5FD !important;
+}
+
+html body .tag.tG,
+html[data-theme="light"] body .tag.tG {
+  background: linear-gradient(180deg, #DCFCE7, #BBF7D0) !important;
+  color: #047857 !important;
+  border: 1px solid #86EFAC !important;
+}
+
+html body .tag.tR,
+html[data-theme="light"] body .tag.tR {
+  background: linear-gradient(180deg, #FEE2E2, #FECACA) !important;
+  color: #B91C1C !important;
+  border: 1px solid #FCA5A5 !important;
+}
+
+html body .tag.tA,
+html[data-theme="light"] body .tag.tA {
+  background: linear-gradient(180deg, #FEF3C7, #FDE68A) !important;
+  color: #B45309 !important;
+  border: 1px solid #FCD34D !important;
+}
+
+html body .tag.tB,
+html[data-theme="light"] body .tag.tB {
+  background: linear-gradient(180deg, #DBEAFE, #BFDBFE) !important;
+  color: #1E40AF !important;
+  border: 1px solid #93C5FD !important;
+}
+
+/* ─── 7. BUTTONS UNIFORM — Bayar/Edit + btn-recalc + btn-edit-jd ────── */
+/* btn-recalc & btn-edit-jd same shape as tal-act buttons */
+html body .btn-recalc,
+html[data-theme="light"] body .btn-recalc {
+  height: 40px !important;
+  padding: 0 14px !important;
+  border-radius: 12px !important;
+  background: #FFFFFF !important;
+  color: #047857 !important;
+  border: 1.5px solid #94A3B8 !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  transition: all .18s cubic-bezier(.2,.8,.2,1) !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.06),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+  white-space: nowrap !important;
+}
+html body .btn-recalc:hover,
+html[data-theme="light"] body .btn-recalc:hover {
+  background: #F0FDF4 !important;
+  border-color: #047857 !important;
+  color: #064E3B !important;
+}
+html body .btn-recalc:active,
+html[data-theme="light"] body .btn-recalc:active {
+  transform: scale(.97) !important;
+  background: #DCFCE7 !important;
+}
+
+html body .btn-edit-jd,
+html[data-theme="light"] body .btn-edit-jd {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #475569 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all .18s cubic-bezier(.2,.8,.2,1) !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.06),
+    0 1px 0 rgba(255,255,255,.95) inset !important;
+}
+html body .btn-edit-jd:hover {
+  background: #F1F5F9 !important;
+  border-color: #94A3B8 !important;
+  color: #0F172A !important;
+}
+html body .btn-edit-jd:active {
+  transform: scale(.93) !important;
+  background: #E2E8F0 !important;
+}
+
+/* btn-xs (Proses Anggota Jadwal admin) — match other admin buttons */
+html body .btn-xs,
+html[data-theme="light"] body .btn-xs {
+  height: 30px !important;
+  padding: 0 12px !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  letter-spacing: .1px !important;
+  white-space: nowrap !important;
+}
+
+/* ─── 8. KAS LIST — Pemasukan (green) / Pengeluaran (red) color code ── */
+html body .ks-row,
+html[data-theme="light"] body .ks-row {
+  padding: 12px 14px !important;
+  border-bottom: 1px solid var(--line) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: background .15s !important;
+}
+
+html body .ks-row .ks-lbl,
+html[data-theme="light"] body .ks-row .ks-lbl {
+  font-size: 13px !important;
+  color: #1E293B !important;
+  font-weight: 600 !important;
+}
+
+html body .ks-row .ks-val,
+html[data-theme="light"] body .ks-row .ks-val {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #0A0A0A !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+}
+
+/* Income / pemasukan row → emerald accent */
+html body .ks-row.ks-in .ks-val,
+html body .ks-row.income .ks-val,
+html[data-theme="light"] body .ks-row.ks-in .ks-val {
+  color: #047857 !important;
+}
+
+/* Expense / pengeluaran row → red/orange accent */
+html body .ks-row.ks-out .ks-val,
+html body .ks-row.expense .ks-val,
+html[data-theme="light"] body .ks-row.ks-out .ks-val {
+  color: #B91C1C !important;
+}
+
+/* ─── 9. SECTION TITLES — uniform style ─────────────────────────────── */
+html body .sec-ttl,
+html[data-theme="light"] body .sec-ttl {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  color: #475569 !important;
+  margin: 18px 0 10px !important;
+}
+
+/* ─── 10. CARD HEADER — uniform style ─────────────────────────────── */
+html body .card-hdr,
+html[data-theme="light"] body .card-hdr {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 14px 16px 12px !important;
+  border-bottom: 1px solid #ECE9DF !important;
+  background: linear-gradient(180deg, #FAFAF7, #F4F2EC) !important;
+}
+html body .card-hdr-t,
+html[data-theme="light"] body .card-hdr-t {
+  flex: 1 !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  color: #0A0A0A !important;
+  letter-spacing: -.1px !important;
+}
+html body .card-hdr-ic,
+html[data-theme="light"] body .card-hdr-ic {
+  font-size: 17px !important;
+  line-height: 1 !important;
+  opacity: .85 !important;
+}
+
+/* ─── 11. PUB MEMBER ITEM — alignment di Daftar Anggota warga ───────── */
+html body .pub-member-item,
+html[data-theme="light"] body .pub-member-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+  margin-bottom: 8px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E7E2D2 !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 1px 2px rgba(15,23,42,.04),
+    0 3px 10px rgba(15,23,42,.05) !important;
+}
+
+html body .pub-no-urut,
+html[data-theme="light"] body .pub-no-urut {
+  flex: 0 0 22px !important;
+  width: 22px !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  color: #94A3B8 !important;
+  letter-spacing: -.2px !important;
+}
+
+html body .pub-member-name,
+html[data-theme="light"] body .pub-member-name {
+  flex: 1 !important;
+  min-width: 0 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #0A0A0A !important;
+  letter-spacing: -.01em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+html body .pub-badge,
+html[data-theme="light"] body .pub-badge {
+  flex-shrink: 0 !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .4px !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  border: 1px solid transparent !important;
+}
+html body .pub-badge.hadir { background: #DCFCE7 !important; color: #047857 !important; border-color: #86EFAC !important; }
+html body .pub-badge.titip { background: #FEF3C7 !important; color: #B45309 !important; border-color: #FCD34D !important; }
+html body .pub-badge.tidak { background: #F1F5F9 !important; color: #475569 !important; border-color: #CBD5E1 !important; }
+html body .pub-badge.sb,
+html body .pub-badge.sudah-badge { background: #FEF3C7 !important; color: #B45309 !important; border-color: #FCD34D !important; }
+
+/* ─── 12. SAVE-BAR (Simpan & Hitung Iuran) — premium look ────────────── */
+html body .save-bar .btn,
+html body .save-bar .btn-G,
+html[data-theme="light"] body .save-bar .btn-G {
+  width: 100% !important;
+  height: 56px !important;
+  border-radius: 16px !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.05px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #10B981 0%, #047857 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(2,44,34,.50) !important;
+  box-shadow:
+    0 8px 22px rgba(4,120,87,.36),
+    0 2px 4px rgba(2,44,34,.20),
+    0 1px 0 rgba(255,255,255,.40) inset !important;
+  text-shadow: 0 1px 1px rgba(2,44,34,.40) !important;
+  transition: transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s !important;
+}
+html body .save-bar .btn:active {
+  transform: scale(.98) !important;
+}
+
+/* ─── 13. DARK MODE mirror untuk v10.0 polish ─────────────────────── */
+[data-theme="dark"] html body #topbar .tb-name { color: #F0F4FC !important; }
+[data-theme="dark"] html body #topbar .tb-role { color: #94A3B8 !important; }
+[data-theme="dark"] html body #topbar .tb-refresh { color: #94A3B8 !important; }
+[data-theme="dark"] html body #topbar .tb-refresh:hover { background: var(--surf2) !important; color: #34D399 !important; }
+
+[data-theme="dark"] html body .jdb-item {
+  background: var(--surf) !important;
+  border-color: var(--line) !important;
+}
+[data-theme="dark"] html body .jdb-item .jd-name { color: #F0F4FC !important; }
+[data-theme="dark"] html body .jdb-item .jd-tgl { color: #94A3B8 !important; }
+
+[data-theme="dark"] html body .pub-member-item {
+  background: var(--surf) !important;
+  border-color: var(--line) !important;
+}
+[data-theme="dark"] html body .pub-member-name { color: #F0F4FC !important; }
+
+[data-theme="dark"] html body .ks-row .ks-lbl { color: #CBD5E1 !important; }
+[data-theme="dark"] html body .ks-row .ks-val { color: #F0F4FC !important; }
+[data-theme="dark"] html body .ks-row.ks-in .ks-val { color: #34D399 !important; }
+[data-theme="dark"] html body .ks-row.ks-out .ks-val { color: #FCA5A5 !important; }
+
+[data-theme="dark"] html body .card-hdr {
+  background: var(--surf2) !important;
+  border-color: var(--line) !important;
+}
+[data-theme="dark"] html body .card-hdr-t { color: #F0F4FC !important; }
+
+[data-theme="dark"] html body .btn-recalc {
+  background: var(--surf) !important;
+  border-color: var(--line2) !important;
+  color: #34D399 !important;
+}
+[data-theme="dark"] html body .btn-edit-jd {
+  background: var(--surf) !important;
+  border-color: var(--line2) !important;
+  color: #CBD5E1 !important;
+}
+
+[data-theme="dark"] html body .tag.tS { background: rgba(59,130,246,.15) !important; color: #93C5FD !important; border-color: rgba(59,130,246,.30) !important; }
+[data-theme="dark"] html body .tag.tG { background: rgba(16,185,129,.15) !important; color: #34D399 !important; border-color: rgba(16,185,129,.30) !important; }
+[data-theme="dark"] html body .tag.tR { background: rgba(239,68,68,.15) !important; color: #FCA5A5 !important; border-color: rgba(239,68,68,.30) !important; }
+[data-theme="dark"] html body .tag.tA { background: rgba(245,158,11,.15) !important; color: #FCD34D !important; border-color: rgba(245,158,11,.30) !important; }
 </style>
 <script id="patch-final-js">
 (function(){
