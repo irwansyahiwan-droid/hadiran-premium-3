@@ -29294,6 +29294,109 @@ html[data-theme] body #jadwalList::after {
 })();
 </script>
 
+<script id="patch-v910-pgabsensi-sentinel">
+/* ════════════════════════════════════════════════════════════════════════
+   v9.10 — REAL DOM SENTINEL untuk pgAbsensi
+   ────────────────────────────────────────────────────────────────────────
+   CSS ::after dan inline padding-bottom belum berhasil. Pendekatan baru:
+   inject elemen DIV nyata sebagai child TERAKHIR dari pgAbsensi.
+   - Real DOM element TIDAK BISA ditimpa CSS pseudo-element rules
+   - Kontribusi height ke scrollHeight dijamin (real flow content)
+   - Idempotent: kalau sudah ada, hanya ensure di posisi terakhir
+   ════════════════════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+  var SENTINEL_ID = 'pgAbsensiSentinel';
+
+  function ensureSentinel(){
+    var pg = document.getElementById('pgAbsensi');
+    if(!pg) return;
+
+    var hasSavebar = document.body.classList.contains('has-savebar');
+    var navHidden  = document.body.classList.contains('nav-hidden');
+    /* navHidden: nav slid away, butuh sedikit buffer saja
+       hasSavebar: ada save-bar floating, butuh buffer lebih besar
+       default: nav muncul, butuh buffer normal */
+    var height = navHidden ? '120px' : (hasSavebar ? '480px' : '400px');
+
+    var sentinel = document.getElementById(SENTINEL_ID);
+
+    if(!sentinel){
+      sentinel = document.createElement('div');
+      sentinel.id = SENTINEL_ID;
+      sentinel.setAttribute('aria-hidden', 'true');
+      pg.appendChild(sentinel);
+    }
+
+    /* Pastikan jadi anak TERAKHIR pgAbsensi */
+    if(sentinel.parentElement !== pg){
+      pg.appendChild(sentinel);
+    } else if(pg.lastElementChild !== sentinel){
+      pg.appendChild(sentinel); /* moves to end */
+    }
+
+    /* Set inline style dengan !important via cssText (tidak bisa
+       di-override CSS) */
+    var css = 'display:block!important;'+
+              'height:'+height+'!important;'+
+              'min-height:'+height+'!important;'+
+              'width:100%!important;'+
+              'flex-shrink:0!important;'+
+              'flex-grow:0!important;'+
+              'visibility:hidden!important;'+
+              'pointer-events:none!important;'+
+              'background:transparent!important;'+
+              'border:none!important;'+
+              'margin:0!important;'+
+              'padding:0!important;'+
+              'box-sizing:border-box!important;'+
+              'position:relative!important;'+
+              'overflow:hidden!important;';
+
+    if(sentinel.style.cssText !== css){
+      sentinel.style.cssText = css;
+    }
+  }
+
+  function initSentinel(){
+    ensureSentinel();
+
+    /* Re-ensure setiap body class berubah (has-savebar / nav-hidden) */
+    try{
+      new MutationObserver(ensureSentinel)
+        .observe(document.body, {attributes:true, attributeFilter:['class']});
+    }catch(e){}
+
+    /* Re-ensure tiap kali pgAbsensi children berubah (loadJadwal dll) */
+    var pg = document.getElementById('pgAbsensi');
+    if(pg){
+      try{
+        new MutationObserver(function(muts){
+          /* Skip kalau mutasi datang dari sentinel sendiri */
+          for(var i=0;i<muts.length;i++){
+            var m = muts[i];
+            if(m.target.id === SENTINEL_ID) continue;
+            if(m.type === 'childList'){
+              ensureSentinel();
+              return;
+            }
+          }
+        }).observe(pg, {childList:true, subtree:false});
+      }catch(e){}
+    }
+
+    /* Safety net: setiap 1.5s ensure sentinel masih ada di posisi tepat */
+    setInterval(ensureSentinel, 1500);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initSentinel);
+  } else {
+    initSentinel();
+  }
+})();
+</script>
+
 
 </body>
 </html>
