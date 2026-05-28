@@ -22524,7 +22524,8 @@ html[data-theme] body .page {
 /* mainScrollWrap: scroll container utama */
 html body #mainScrollWrap,
 html[data-theme] body #mainScrollWrap {
-  padding-bottom: 0 !important; /* padding ada di .page, bukan di wrapper */
+  /* v9.9: padding-bottom dipindah ke pgAbsensi via ::after sentinel
+     supaya tidak ada konflik dengan inline-JS yang set wrap padding. */
   scroll-padding-bottom: calc(var(--nav, 68px) + 24px) !important;
 }
 /* Section-level cards di semua halaman: pastikan margin bawah cukup */
@@ -29212,6 +29213,47 @@ html[data-theme] body #jadwalList {
 /* Make sure inner scroll wrapper accounts for nav too */
 html body #mainScrollWrap > section.page#pgAbsensi {
   min-height: calc(100vh - var(--nav, 68px) - env(safe-area-inset-top, 0px)) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   v9.9 — BULLETPROOF BOTTOM SENTINEL untuk pgAbsensi
+   Pendekatan baru: CSS ::after pseudo-element selalu ada sebagai child
+   terakhir pgAbsensi, dengan height 360px. Tidak bisa ditimpa JS karena
+   pseudo-element bukan style attribute pada element nyata.
+   ════════════════════════════════════════════════════════════════════════ */
+html body section.page#pgAbsensi::after,
+html[data-theme] body section.page#pgAbsensi::after,
+html[data-theme="light"] body section.page#pgAbsensi::after,
+html[data-theme="dark"]  body section.page#pgAbsensi::after {
+  content: '' !important;
+  display: block !important;
+  height: 360px !important;
+  min-height: 360px !important;
+  width: 100% !important;
+  flex-shrink: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  background: none !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Saat save-bar aktif, beri buffer lebih besar (450px) */
+html body.has-savebar section.page#pgAbsensi::after,
+html[data-theme] body.has-savebar section.page#pgAbsensi::after {
+  height: 450px !important;
+  min-height: 450px !important;
+}
+
+/* Update jadwalList::after juga (sebelumnya 180px) → 280px */
+html body #jadwalList::after,
+html[data-theme] body #jadwalList::after {
+  content: '' !important;
+  display: block !important;
+  height: 280px !important;
+  min-height: 280px !important;
+  width: 100% !important;
 }
 </style>
 <script id="patch-final-js">
