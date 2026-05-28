@@ -25142,8 +25142,9 @@ html body #pgAbsensi#pgAbsensi {
 
 
 /* ════ 3. SAFETY NET — padding pada absAdmin ════ */
+/* v9.11: Direduksi dari 80px → 0 untuk mengurangi total buffer */
 html body #absAdmin {
-  padding-bottom: 80px !important;
+  padding-bottom: 0 !important;
 }
 
 
@@ -25346,8 +25347,8 @@ html body.has-savebar #mainScrollWrap#mainScrollWrap {
     var wrap = document.getElementById('mainScrollWrap');
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
-    /* v9.8: konsisten dengan clampClearance & applyPageFix → 280/380px */
-    var pb = hasSavebar ? '380px' : '280px';
+    /* v9.11: konsisten dengan clampClearance & applyPageFix → 120/180px */
+    var pb = hasSavebar ? '180px' : '120px';
     wrap.style.setProperty('padding-bottom', pb, 'important');
   }
 
@@ -25467,16 +25468,17 @@ html body #pgAbsensi#pgAbsensi#pgAbsensi {
     if (pg) {
       var safeArea = parseFloat(getComputedStyle(document.documentElement)
         .getPropertyValue('--safe-bottom') || '0') || 0;
-      /* v9.8: 280px buffer agar item terakhir tidak tertutup nav (was 120px) */
-      var clearance = 280 + safeArea;
+      /* v9.11: 96px cukup — buffer tambahan datang dari mainScrollWrap padding
+         + v122 spacer. Sebelumnya 280px → akumulasi terlalu besar (>1900px). */
+      var clearance = 96 + safeArea;
       pg.style.setProperty('padding-bottom', clearance + 'px', 'important');
     }
     /* Also ensure mainScrollWrap keeps its clearance (works with v119) */
     var wrap = document.getElementById('mainScrollWrap');
     if (wrap) {
       var cur = parseInt(wrap.style.paddingBottom || '0', 10);
-      /* v9.8: minimal 280px (was 200px) */
-      if (cur < 280) wrap.style.setProperty('padding-bottom', '280px', 'important');
+      /* v9.11: minimal 120px (was 280px) — match clampClearance */
+      if (cur < 120) wrap.style.setProperty('padding-bottom', '120px', 'important');
     }
   }
 
@@ -26360,9 +26362,9 @@ body #mainScrollWrap {
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
     var navHidden  = document.body.classList.contains('nav-hidden');
-    /* v9.8: Naikkan dari 120/230px → 280/380px supaya bagian bawah
-       halaman Jadwal bendahara (pgAbsensi) tidak terpotong nav. */
-    var pb = navHidden ? '0px' : (hasSavebar ? '380px' : '280px');
+    /* v9.11: turunkan dari 280/380px → 120/180px supaya buffer kumulatif
+       tidak melebihi viewport. */
+    var pb = navHidden ? '0px' : (hasSavebar ? '180px' : '120px');
     /* Hanya update jika perlu */
     if (wrap.style.paddingBottom !== pb) {
       wrap.style.setProperty('padding-bottom', pb, 'important');
@@ -29185,17 +29187,18 @@ html body .pub-member-item .pub-av.pub-av-peci.sudah-av::after {
 }
 
 /* ── 2. PG ABSENSI — DEFINITIVE PADDING BOTTOM (anti-tertutup-nav) ──── */
-/* Specificity 0,2,2,1 with quadrupled-id — pasti menang dari semua rule */
+/* v9.11: DIKURANGI. Sebelumnya 300/360px → akumulasi terlalu besar.
+   Sekarang 96/140px = cukup nav + safe + breathing. */
 html body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
 html[data-theme] body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
 html[data-theme="light"] body section#pgAbsensi#pgAbsensi#pgAbsensi.page,
 html[data-theme="dark"]  body section#pgAbsensi#pgAbsensi#pgAbsensi.page {
-  padding-bottom: calc(180px + env(safe-area-inset-bottom, 0px) + 120px) !important;
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px) + 36px) !important;
 }
 
 html body.has-savebar section#pgAbsensi#pgAbsensi#pgAbsensi.page,
 html[data-theme] body.has-savebar section#pgAbsensi#pgAbsensi#pgAbsensi.page {
-  padding-bottom: calc(220px + env(safe-area-inset-bottom, 0px) + 140px) !important;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px) + 44px) !important;
 }
 
 /* Boost mainScrollWrap scroll-padding so anchor scrolls land above nav */
@@ -29216,43 +29219,33 @@ html body #mainScrollWrap > section.page#pgAbsensi {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   v9.9 — BULLETPROOF BOTTOM SENTINEL untuk pgAbsensi
-   Pendekatan baru: CSS ::after pseudo-element selalu ada sebagai child
-   terakhir pgAbsensi, dengan height 360px. Tidak bisa ditimpa JS karena
-   pseudo-element bukan style attribute pada element nyata.
+   v9.9 → v9.11: DISABLED. Buffer kumulatif sudah terlalu besar.
+   ::after pseudo-element direset ke 0px supaya tidak menambah buffer.
    ════════════════════════════════════════════════════════════════════════ */
 html body section.page#pgAbsensi::after,
 html[data-theme] body section.page#pgAbsensi::after,
 html[data-theme="light"] body section.page#pgAbsensi::after,
 html[data-theme="dark"]  body section.page#pgAbsensi::after {
   content: '' !important;
-  display: block !important;
-  height: 360px !important;
-  min-height: 360px !important;
-  width: 100% !important;
-  flex-shrink: 0 !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
-  background: none !important;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
 }
 
-/* Saat save-bar aktif, beri buffer lebih besar (450px) */
 html body.has-savebar section.page#pgAbsensi::after,
 html[data-theme] body.has-savebar section.page#pgAbsensi::after {
-  height: 450px !important;
-  min-height: 450px !important;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
 }
 
-/* Update jadwalList::after juga (sebelumnya 180px) → 280px */
+/* jadwalList::after juga direset ke kecil saja (60px untuk separation card) */
 html body #jadwalList::after,
 html[data-theme] body #jadwalList::after {
   content: '' !important;
   display: block !important;
-  height: 280px !important;
-  min-height: 280px !important;
+  height: 60px !important;
+  min-height: 60px !important;
   width: 100% !important;
 }
 </style>
@@ -29265,13 +29258,13 @@ html[data-theme] body #jadwalList::after {
     var cl=document.body.classList;
     var hasSavebar=cl.contains('has-savebar');
     var navHidden=cl.contains('nav-hidden');
-    /* v9.8 fix: nilai dinaikkan agar bagian bawah halaman Jadwal mode
-       bendahara (pgAbsensi) tidak terpotong nav. Sebelumnya 104/165/96px
-       — terlalu kecil. Sekarang 280/380/96px. */
+    /* v9.11 fix: turunkan dari 280/380px → 120/180px. Buffer kumulatif
+       sebelumnya ~1980px (jauh > viewport ~800px) bikin scroll-bottom
+       mendarat di kekosongan. Sekarang ~700px total, sesuai viewport. */
     var pb;
-    if(hasSavebar) pb='380px';
-    else if(navHidden) pb='96px';
-    else pb='280px';
+    if(hasSavebar) pb='180px';
+    else if(navHidden) pb='0px';
+    else pb='120px';
     if(wrap.style.paddingBottom!==pb){
       wrap.style.setProperty('padding-bottom',pb,'important');
     }
@@ -29296,103 +29289,33 @@ html[data-theme] body #jadwalList::after {
 
 <script id="patch-v910-pgabsensi-sentinel">
 /* ════════════════════════════════════════════════════════════════════════
-   v9.10 — REAL DOM SENTINEL untuk pgAbsensi
-   ────────────────────────────────────────────────────────────────────────
-   CSS ::after dan inline padding-bottom belum berhasil. Pendekatan baru:
-   inject elemen DIV nyata sebagai child TERAKHIR dari pgAbsensi.
-   - Real DOM element TIDAK BISA ditimpa CSS pseudo-element rules
-   - Kontribusi height ke scrollHeight dijamin (real flow content)
-   - Idempotent: kalau sudah ada, hanya ensure di posisi terakhir
+   v9.11: DISABLED. v9.10 sentinel 480px JUSTRU bikin buffer kumulatif
+   (~1980px) jauh melebihi viewport — scroll-bottom mendarat di kekosongan,
+   user lihat "konten habis terblok warna bg".
+   Script ini sekarang HANYA menghapus sentinel kalau sudah ada,
+   memastikan tidak ada residual dari versi sebelumnya.
    ════════════════════════════════════════════════════════════════════════ */
 (function(){
   'use strict';
   var SENTINEL_ID = 'pgAbsensiSentinel';
 
-  function ensureSentinel(){
-    var pg = document.getElementById('pgAbsensi');
-    if(!pg) return;
-
-    var hasSavebar = document.body.classList.contains('has-savebar');
-    var navHidden  = document.body.classList.contains('nav-hidden');
-    /* navHidden: nav slid away, butuh sedikit buffer saja
-       hasSavebar: ada save-bar floating, butuh buffer lebih besar
-       default: nav muncul, butuh buffer normal */
-    var height = navHidden ? '120px' : (hasSavebar ? '480px' : '400px');
-
-    var sentinel = document.getElementById(SENTINEL_ID);
-
-    if(!sentinel){
-      sentinel = document.createElement('div');
-      sentinel.id = SENTINEL_ID;
-      sentinel.setAttribute('aria-hidden', 'true');
-      pg.appendChild(sentinel);
-    }
-
-    /* Pastikan jadi anak TERAKHIR pgAbsensi */
-    if(sentinel.parentElement !== pg){
-      pg.appendChild(sentinel);
-    } else if(pg.lastElementChild !== sentinel){
-      pg.appendChild(sentinel); /* moves to end */
-    }
-
-    /* Set inline style dengan !important via cssText (tidak bisa
-       di-override CSS) */
-    var css = 'display:block!important;'+
-              'height:'+height+'!important;'+
-              'min-height:'+height+'!important;'+
-              'width:100%!important;'+
-              'flex-shrink:0!important;'+
-              'flex-grow:0!important;'+
-              'visibility:hidden!important;'+
-              'pointer-events:none!important;'+
-              'background:transparent!important;'+
-              'border:none!important;'+
-              'margin:0!important;'+
-              'padding:0!important;'+
-              'box-sizing:border-box!important;'+
-              'position:relative!important;'+
-              'overflow:hidden!important;';
-
-    if(sentinel.style.cssText !== css){
-      sentinel.style.cssText = css;
+  function removeSentinel(){
+    var el = document.getElementById(SENTINEL_ID);
+    if(el && el.parentNode){
+      el.parentNode.removeChild(el);
     }
   }
 
-  function initSentinel(){
-    ensureSentinel();
-
-    /* Re-ensure setiap body class berubah (has-savebar / nav-hidden) */
-    try{
-      new MutationObserver(ensureSentinel)
-        .observe(document.body, {attributes:true, attributeFilter:['class']});
-    }catch(e){}
-
-    /* Re-ensure tiap kali pgAbsensi children berubah (loadJadwal dll) */
-    var pg = document.getElementById('pgAbsensi');
-    if(pg){
-      try{
-        new MutationObserver(function(muts){
-          /* Skip kalau mutasi datang dari sentinel sendiri */
-          for(var i=0;i<muts.length;i++){
-            var m = muts[i];
-            if(m.target.id === SENTINEL_ID) continue;
-            if(m.type === 'childList'){
-              ensureSentinel();
-              return;
-            }
-          }
-        }).observe(pg, {childList:true, subtree:false});
-      }catch(e){}
-    }
-
-    /* Safety net: setiap 1.5s ensure sentinel masih ada di posisi tepat */
-    setInterval(ensureSentinel, 1500);
+  function init(){
+    removeSentinel();
+    /* Watch — jika ada patch lama re-inject sentinel, hapus lagi */
+    setInterval(removeSentinel, 1500);
   }
 
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', initSentinel);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initSentinel();
+    init();
   }
 })();
 </script>
