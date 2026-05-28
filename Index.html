@@ -30074,6 +30074,35 @@ html body #kasHadiranSummary,
 html body #talanganSummary {
   display: none !important;
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   v10.3 — Hide hardcoded duplikasi KPI di pgTalangan (Belum/Sudah Lunas)
+   yang DOBLE dengan hero hb-row breakdown.
+   User: "tampilanya jadi iring konten, kurang persisi"
+   ════════════════════════════════════════════════════════════════════════ */
+html body #pgTalangan > .sg.sg2 {
+  display: none !important;
+}
+
+/* Section spacing — breathing room antar major section supaya tidak
+   "iring konten" kerasa */
+html body .page > .hero,
+html body .page > .sg {
+  margin-bottom: 16px !important;
+}
+html body .sec-ttl {
+  margin: 22px 0 12px !important;
+}
+html body .page > .card,
+html body .page > .alert {
+  margin-bottom: 14px !important;
+}
+/* First section title after hero/sg/alert — extra breathing */
+html body .page > .hero + .sec-ttl,
+html body .page > .sg + .sec-ttl,
+html body .page > .alert + .sec-ttl {
+  margin-top: 24px !important;
+}
 </style>
 <script id="patch-final-js">
 (function(){
