@@ -25345,8 +25345,8 @@ html body.has-savebar #mainScrollWrap#mainScrollWrap {
     var wrap = document.getElementById('mainScrollWrap');
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
-    /* 400px cukup untuk nav (120px) + save-bar (186px) + item (76px) + napas */
-    var pb = hasSavebar ? '440px' : '260px';
+    /* v9.8: konsisten dengan clampClearance & applyPageFix → 280/380px */
+    var pb = hasSavebar ? '380px' : '280px';
     wrap.style.setProperty('padding-bottom', pb, 'important');
   }
 
@@ -25466,14 +25466,16 @@ html body #pgAbsensi#pgAbsensi#pgAbsensi {
     if (pg) {
       var safeArea = parseFloat(getComputedStyle(document.documentElement)
         .getPropertyValue('--safe-bottom') || '0') || 0;
-      var clearance = 120 + safeArea;
+      /* v9.8: 280px buffer agar item terakhir tidak tertutup nav (was 120px) */
+      var clearance = 280 + safeArea;
       pg.style.setProperty('padding-bottom', clearance + 'px', 'important');
     }
     /* Also ensure mainScrollWrap keeps its clearance (works with v119) */
     var wrap = document.getElementById('mainScrollWrap');
     if (wrap) {
       var cur = parseInt(wrap.style.paddingBottom || '0', 10);
-      if (cur < 200) wrap.style.setProperty('padding-bottom', '200px', 'important');
+      /* v9.8: minimal 280px (was 200px) */
+      if (cur < 280) wrap.style.setProperty('padding-bottom', '280px', 'important');
     }
   }
 
@@ -26357,9 +26359,9 @@ body #mainScrollWrap {
     if (!wrap) return;
     var hasSavebar = document.body.classList.contains('has-savebar');
     var navHidden  = document.body.classList.contains('nav-hidden');
-    /* Nav + save-bar total: ~182px, tambah buffer 40px → 222px */
-    /* Nav saja: ~98px, tambah buffer → 120px */
-    var pb = navHidden ? '0px' : (hasSavebar ? '230px' : '120px');
+    /* v9.8: Naikkan dari 120/230px → 280/380px supaya bagian bawah
+       halaman Jadwal bendahara (pgAbsensi) tidak terpotong nav. */
+    var pb = navHidden ? '0px' : (hasSavebar ? '380px' : '280px');
     /* Hanya update jika perlu */
     if (wrap.style.paddingBottom !== pb) {
       wrap.style.setProperty('padding-bottom', pb, 'important');
@@ -29221,13 +29223,13 @@ html body #mainScrollWrap > section.page#pgAbsensi {
     var cl=document.body.classList;
     var hasSavebar=cl.contains('has-savebar');
     var navHidden=cl.contains('nav-hidden');
-    /* JANGAN PERNAH 0px — nav melayang ~66px & save-bar ~72px bisa menutupi
-       konten terakhir. Beri ruang cukup agar item terakhir bisa di-scroll
-       penuh di atas nav/save-bar. */
+    /* v9.8 fix: nilai dinaikkan agar bagian bawah halaman Jadwal mode
+       bendahara (pgAbsensi) tidak terpotong nav. Sebelumnya 104/165/96px
+       — terlalu kecil. Sekarang 280/380/96px. */
     var pb;
-    if(hasSavebar) pb='165px';
+    if(hasSavebar) pb='380px';
     else if(navHidden) pb='96px';
-    else pb='104px';
+    else pb='280px';
     if(wrap.style.paddingBottom!==pb){
       wrap.style.setProperty('padding-bottom',pb,'important');
     }
