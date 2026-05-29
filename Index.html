@@ -1987,11 +1987,34 @@ Masuk sebagai Bendahara
 <div class="tb-name">Hadiran RT</div>
 <div class="tb-role" id="tbRole">—</div>
 </div>
-<button class="tb-refresh" id="btnTheme" onclick="toggleTheme()" title="Ganti Tema" aria-label="Ganti Tema"><span id="themeIco"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
-<button class="tb-refresh" id="btnRefresh" onclick="doRefresh()" title="Refresh" aria-label="Refresh"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg></button>
-<button class="tb-refresh" id="btnPwaInstall" onclick="showPwaGuide()" title="Install Aplikasi" aria-label="Install Aplikasi" style="display:none"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M9 6h6"/></svg></button>
-<button class="tb-refresh" id="btnAbout" onclick="openOv('ovAbout')" title="Tentang Aplikasi" aria-label="Tentang Aplikasi"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+<button class="tb-refresh tb-util" id="btnTheme" onclick="toggleTheme()" title="Ganti Tema" aria-label="Ganti Tema"><span id="themeIco"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
+<button class="tb-refresh tb-util" id="btnRefresh" onclick="doRefresh()" title="Refresh" aria-label="Refresh"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg></button>
+<button class="tb-refresh tb-util" id="btnPwaInstall" onclick="showPwaGuide()" title="Install Aplikasi" aria-label="Install Aplikasi" style="display:none"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M9 6h6"/></svg></button>
+<button class="tb-refresh tb-util" id="btnAbout" onclick="openOv('ovAbout')" title="Tentang Aplikasi" aria-label="Tentang Aplikasi"><svg class="tb-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
 <div class="tb-badge" id="tbBadge">—</div>
+<div class="tb-kebab-wrap">
+<button class="tb-kebab" id="tbKebabBtn" onclick="(function(e){var p=document.getElementById('tbKebabPop');p.classList.toggle('open');event.stopPropagation();})()" title="Menu" aria-label="Menu lainnya">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+</button>
+<div class="tb-kebab-pop" id="tbKebabPop">
+<button class="tb-kebab-item" onclick="toggleTheme();document.getElementById('tbKebabPop').classList.remove('open')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+<span>Ganti Tema</span>
+</button>
+<button class="tb-kebab-item" onclick="doRefresh();document.getElementById('tbKebabPop').classList.remove('open')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg>
+<span>Refresh Data</span>
+</button>
+<button class="tb-kebab-item tb-kebab-pwa" onclick="showPwaGuide();document.getElementById('tbKebabPop').classList.remove('open')" style="display:none">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M9 6h6"/></svg>
+<span>Install Aplikasi</span>
+</button>
+<button class="tb-kebab-item" onclick="openOv('ovAbout');document.getElementById('tbKebabPop').classList.remove('open')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+<span>Tentang Aplikasi</span>
+</button>
+</div>
+</div>
 </div>
 </div>
 <div id="app" style="display:none">
@@ -30060,6 +30083,558 @@ html body .save-bar .btn:active {
 /* ── 17. SCROLLBAR ───────────────────────────────────────────────────── */
 [data-theme="dark"] *::-webkit-scrollbar-thumb { background: #334155 !important; }
 [data-theme="dark"] * { scrollbar-color: #334155 transparent !important; }
+</style>
+
+<style id="v11-premium-redesign">
+/* ════════════════════════════════════════════════════════════════════════
+   v11.0 — PREMIUM 2026 STARTUP REDESIGN
+   6-pillar comprehensive UI overhaul per Senior UI/UX brief.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 0. FONT FAMILY — Plus Jakarta Sans / Inter ─────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+html body,
+html body button,
+html body input,
+html body select,
+html body textarea {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, 'SF Pro Text', 'Segoe UI', sans-serif !important;
+}
+
+/* ── 1. BOTTOM NAV — FLOATING BENTO GLASSMORPHISM ────────────────────── */
+html body #bottomNav,
+html[data-theme="light"] body #bottomNav {
+  border-radius: 24px !important;
+  background: rgba(255,255,255,.75) !important;
+  backdrop-filter: blur(12px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.5) !important;
+  border: 1px solid rgba(255,255,255,.55) !important;
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.06),
+    0 4px 12px rgba(15,23,42,.04),
+    0 1px 3px rgba(15,23,42,.02) !important;
+}
+
+[data-theme="dark"] html body #bottomNav {
+  background: rgba(15,23,42,.78) !important;
+  border: 1px solid rgba(255,255,255,.06) !important;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.40),
+    0 4px 12px rgba(0,0,0,.25) !important;
+}
+
+/* Inactive items: gray with low opacity (per brief: opacity 0.4) */
+html body #bottomNav .ni,
+html[data-theme="light"] body #bottomNav .ni {
+  color: #64748B !important;
+  opacity: .55 !important;
+  transition: opacity .22s var(--e1), color .22s var(--e1) !important;
+  position: relative !important;
+}
+html body #bottomNav .ni .ni-lbl,
+html[data-theme="light"] body #bottomNav .ni .ni-lbl {
+  color: #64748B !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+  font-size: 9.5px !important;
+  letter-spacing: .2px !important;
+}
+html body #bottomNav .ni .ni-ico,
+html[data-theme="light"] body #bottomNav .ni .ni-ico {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+html body #bottomNav .ni .ni-ico svg,
+html[data-theme="light"] body #bottomNav .ni .ni-ico svg {
+  color: #64748B !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  filter: none !important;
+}
+
+/* Active state: SOLID GREEN, NO PILL, +4px dot indicator below text */
+html body #bottomNav .ni.on,
+html[data-theme="light"] body #bottomNav .ni.on {
+  color: #059669 !important;
+  opacity: 1 !important;
+}
+html body #bottomNav .ni.on .ni-ico,
+html[data-theme="light"] body #bottomNav .ni.on .ni-ico {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+html body #bottomNav .ni.on .ni-ico svg,
+html[data-theme="light"] body #bottomNav .ni.on .ni-ico svg {
+  color: #059669 !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  transform: none !important;
+}
+html body #bottomNav .ni.on .ni-lbl,
+html[data-theme="light"] body #bottomNav .ni.on .ni-lbl {
+  color: #059669 !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
+
+/* HIDE old top indicator line (from v9.4) */
+html body #bottomNav .ni.on::after,
+html[data-theme] body #bottomNav .ni.on::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* NEW: 4px dot indicator BELOW text (active state only) */
+html body #bottomNav .ni.on::before,
+html[data-theme="light"] body #bottomNav .ni.on::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: 6px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 4px !important;
+  height: 4px !important;
+  border-radius: 50% !important;
+  background: #059669 !important;
+  box-shadow: 0 0 6px rgba(5,150,105,.45) !important;
+  pointer-events: none !important;
+}
+
+/* Dark mode: emerald-400 active */
+[data-theme="dark"] html body #bottomNav .ni { color: #94A3B8 !important; opacity: .55 !important; }
+[data-theme="dark"] html body #bottomNav .ni .ni-lbl { color: #94A3B8 !important; }
+[data-theme="dark"] html body #bottomNav .ni .ni-ico svg { color: #94A3B8 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on,
+[data-theme="dark"] html body #bottomNav .ni.on .ni-lbl { color: #34D399 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on .ni-ico svg { color: #34D399 !important; }
+[data-theme="dark"] html body #bottomNav .ni.on::before { background: #34D399 !important; box-shadow: 0 0 6px rgba(52,211,153,.50) !important; }
+
+/* ── 2. HERO CARD — SUBTLE GRADIENT + Rp BASELINE ───────────────────── */
+html body .hero,
+html[data-theme="light"] body .hero {
+  background:
+    radial-gradient(ellipse at 80% -20%, rgba(255,255,255,.14), transparent 60%),
+    linear-gradient(135deg, #064E3B 0%, #047857 50%, #10B981 100%) !important;
+  border-radius: 24px !important;
+  border: none !important;
+  box-shadow:
+    0 12px 32px rgba(4,120,87,.16),
+    0 2px 8px rgba(4,120,87,.08),
+    0 1px 0 rgba(255,255,255,.18) inset !important;
+}
+
+/* Rp baseline alignment with main number */
+html body .hero-amt,
+html[data-theme="light"] body .hero-amt {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 4px !important;
+  font-size: 42px !important;
+  font-weight: 900 !important;
+  letter-spacing: -1.4px !important;
+  line-height: 1.05 !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 2px rgba(2,44,34,.30) !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+}
+
+html body .hero-rp,
+html[data-theme="light"] body .hero-rp {
+  font-size: .62em !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  vertical-align: baseline !important;
+  position: static !important;
+  color: rgba(255,255,255,.82) !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  align-self: baseline !important;
+  transform: translateY(0) !important;
+  top: 0 !important;
+}
+
+/* ── 3. BUTTONS — HIERARCHY: Primary solid + colored shadow,
+        Secondary OUTLINE white+gray border ─────────────────────────── */
+/* PRIMARY: Bayar, Save-bar (already solid emerald — keep & ensure shadow) */
+html body .tal-act.tal-act-bayar,
+html body .save-bar .btn-G,
+html[data-theme="light"] body .tal-act.tal-act-bayar {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 50%),
+    linear-gradient(180deg, #10B981 0%, #047857 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 8px 20px rgba(4,120,87,.32),
+    0 2px 4px rgba(4,120,87,.18),
+    0 1px 0 rgba(255,255,255,.32) inset !important;
+  text-shadow: 0 1px 1px rgba(2,44,34,.32) !important;
+  transition: all .18s cubic-bezier(.2,.8,.2,1) !important;
+}
+html body .tal-act.tal-act-bayar:active,
+html body .save-bar .btn-G:active {
+  transform: scale(.97) !important;
+  box-shadow:
+    0 4px 10px rgba(4,120,87,.26),
+    0 1px 0 rgba(255,255,255,.24) inset !important;
+}
+
+/* SECONDARY: Edit, Hitung Ulang, btn-edit-jd → OUTLINE */
+html body .tal-act.tal-act-edit,
+html body .btn-recalc,
+html body .btn-edit-jd,
+html[data-theme="light"] body .tal-act.tal-act-edit,
+html[data-theme="light"] body .btn-recalc,
+html[data-theme="light"] body .btn-edit-jd {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  border: 1px solid #E5E7EB !important;
+  color: #1F2937 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 12px !important;
+  transition: all .18s cubic-bezier(.2,.8,.2,1) !important;
+}
+html body .tal-act.tal-act-edit:hover,
+html body .btn-recalc:hover,
+html body .btn-edit-jd:hover {
+  background: #F9FAFB !important;
+  border-color: #D1D5DB !important;
+  color: #111827 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04) !important;
+}
+html body .tal-act.tal-act-edit:active,
+html body .btn-recalc:active,
+html body .btn-edit-jd:active {
+  background: #F3F4F6 !important;
+  transform: scale(.97) !important;
+}
+
+/* PDF buttons → OUTLINE secondary */
+html body .krt2-pdf-link,
+html body .kh2-pdf-link,
+html body .pdf-jadwal-btn {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  color: #047857 !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+}
+html body .krt2-pdf-link:hover,
+html body .kh2-pdf-link:hover,
+html body .pdf-jadwal-btn:hover {
+  background: #F0FDF4 !important;
+  border-color: #6EE7B7 !important;
+  color: #047857 !important;
+  box-shadow: 0 1px 3px rgba(4,120,87,.10) !important;
+}
+
+/* SAVE-BAR floating: ensure z-index above nav, proper margin */
+html body .save-bar {
+  z-index: 320 !important;
+  bottom: calc(var(--nav, 68px) + env(safe-area-inset-bottom, 0px) + 16px) !important;
+}
+
+/* Dark mode buttons */
+[data-theme="dark"] html body .tal-act.tal-act-edit,
+[data-theme="dark"] html body .btn-recalc,
+[data-theme="dark"] html body .btn-edit-jd,
+[data-theme="dark"] html body .krt2-pdf-link,
+[data-theme="dark"] html body .kh2-pdf-link,
+[data-theme="dark"] html body .pdf-jadwal-btn {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+[data-theme="dark"] html body .btn-recalc,
+[data-theme="dark"] html body .krt2-pdf-link,
+[data-theme="dark"] html body .kh2-pdf-link,
+[data-theme="dark"] html body .pdf-jadwal-btn { color: #34D399 !important; }
+[data-theme="dark"] html body .tal-act.tal-act-edit:hover,
+[data-theme="dark"] html body .btn-recalc:hover,
+[data-theme="dark"] html body .btn-edit-jd:hover { background: #283548 !important; border-color: #475569 !important; }
+
+/* ── 4. ALERT CARD — MINIMALIST + LEFT ACCENT (no solid red bg) ──────── */
+html body .alert,
+html[data-theme="light"] body .alert {
+  background: #FFFFFF !important;
+  border: 1px solid #F3F4F6 !important;
+  border-left: 4px solid #94A3B8 !important;
+  color: #1F2937 !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.02),
+    0 1px 3px rgba(0,0,0,.01) !important;
+  padding: 14px 16px !important;
+  font-weight: 500 !important;
+}
+
+html body .alert.aR,
+html[data-theme="light"] body .alert.aR {
+  border-left-color: #EF4444 !important;
+  color: #1F2937 !important;
+}
+html body .alert.aR .alert-ic { color: #EF4444 !important; }
+
+html body .alert.aS,
+html[data-theme="light"] body .alert.aS {
+  border-left-color: #F59E0B !important;
+  color: #1F2937 !important;
+}
+html body .alert.aS .alert-ic { color: #F59E0B !important; }
+
+html body .alert.aG,
+html[data-theme="light"] body .alert.aG {
+  border-left-color: #10B981 !important;
+  color: #1F2937 !important;
+}
+html body .alert.aG .alert-ic { color: #10B981 !important; }
+
+html body .alert.aB,
+html[data-theme="light"] body .alert.aB {
+  border-left-color: #3B82F6 !important;
+  color: #1F2937 !important;
+}
+html body .alert.aB .alert-ic { color: #3B82F6 !important; }
+
+[data-theme="dark"] html body .alert {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+[data-theme="dark"] html body .alert.aR { border-left-color: #F87171 !important; }
+[data-theme="dark"] html body .alert.aS { border-left-color: #FBBF24 !important; }
+[data-theme="dark"] html body .alert.aG { border-left-color: #34D399 !important; }
+[data-theme="dark"] html body .alert.aB { border-left-color: #60A5FA !important; }
+
+/* "Tunggakan Berganda" group header — minimalist */
+html body .tunggakan-berganda,
+html body [class*="tunggakan-berganda"],
+html[data-theme="light"] body .tunggakan-berganda {
+  background: #FFFFFF !important;
+  border: 1px solid #F3F4F6 !important;
+  border-left: 4px solid #EF4444 !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.02),
+    0 1px 3px rgba(0,0,0,.01) !important;
+  padding: 12px 14px !important;
+  margin-bottom: 8px !important;
+}
+html body .tunggakan-berganda-title,
+html[data-theme="light"] body .tunggakan-berganda-title {
+  color: #DC2626 !important;
+  font-weight: 700 !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+html body .tunggakan-berganda-name,
+html[data-theme="light"] body .tunggakan-berganda-name {
+  color: #1F2937 !important;
+  font-weight: 700 !important;
+}
+
+/* Tunggakan amount: plain red text, no gray pill badge */
+html body .tunggakan-amt,
+html body .tal-tunggakan-jml,
+html body [class*="tunggakan-amt"],
+html body [class*="tunggakan-jml"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #DC2626 !important;
+  font-weight: 500 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ── 5. CLEAN HEADER — kebab dropdown + hide utility row ─────────────── */
+/* Hide old utility buttons (.tb-util) — moved to kebab dropdown */
+html body #topbar .tb-util {
+  display: none !important;
+}
+
+/* Kebab button */
+html body #topbar .tb-kebab-wrap {
+  position: relative !important;
+  flex-shrink: 0 !important;
+}
+html body #topbar .tb-kebab {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 12px !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: #475569 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all .18s var(--e1) !important;
+  flex-shrink: 0 !important;
+  padding: 0 !important;
+}
+html body #topbar .tb-kebab:hover {
+  background: #F1F5F9 !important;
+  color: #047857 !important;
+}
+html body #topbar .tb-kebab:active {
+  transform: scale(.92) !important;
+}
+
+/* Dropdown popup */
+html body #topbar .tb-kebab-pop {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  min-width: 200px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #F3F4F6 !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 12px 36px rgba(15,23,42,.10),
+    0 4px 12px rgba(15,23,42,.06),
+    0 1px 3px rgba(15,23,42,.04) !important;
+  padding: 6px !important;
+  display: none !important;
+  z-index: 250 !important;
+  animation: tbKebabIn .18s cubic-bezier(.2,.8,.2,1) both !important;
+}
+html body #topbar .tb-kebab-pop.open {
+  display: block !important;
+}
+@keyframes tbKebabIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+html body #topbar .tb-kebab-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #1F2937 !important;
+  text-align: left !important;
+  transition: background .15s !important;
+  font-family: inherit !important;
+}
+html body #topbar .tb-kebab-item:hover {
+  background: #F9FAFB !important;
+  color: #047857 !important;
+}
+html body #topbar .tb-kebab-item:active {
+  background: #F0FDF4 !important;
+}
+html body #topbar .tb-kebab-item svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+  opacity: .8 !important;
+}
+
+[data-theme="dark"] html body #topbar .tb-kebab { color: #94A3B8 !important; }
+[data-theme="dark"] html body #topbar .tb-kebab:hover { background: #1E293B !important; color: #34D399 !important; }
+[data-theme="dark"] html body #topbar .tb-kebab-pop {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  box-shadow:
+    0 12px 36px rgba(0,0,0,.50),
+    0 4px 12px rgba(0,0,0,.30) !important;
+}
+[data-theme="dark"] html body #topbar .tb-kebab-item { color: #E2E8F0 !important; }
+[data-theme="dark"] html body #topbar .tb-kebab-item:hover { background: #283548 !important; color: #34D399 !important; }
+
+/* Top bar layout: clean, focus on Logo + Title + Badge + Kebab */
+html body #topbar .tb-in {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 16px !important;
+}
+html body #topbar .tb-badge {
+  margin-left: 0 !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  background: rgba(16,185,129,.10) !important;
+  color: #047857 !important;
+  border: 1px solid rgba(16,185,129,.25) !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: .8px !important;
+  text-transform: uppercase !important;
+}
+[data-theme="dark"] html body #topbar .tb-badge {
+  background: rgba(16,185,129,.14) !important;
+  color: #6EE7B7 !important;
+  border-color: rgba(16,185,129,.30) !important;
+}
+
+/* ── 6. SOFT MULTI-LAYER SHADOWS ─────────────────────────────────────── */
+html body .card,
+html body .tal-card,
+html body .jdb-item,
+html body .pub-member-item,
+html body .sb-sel-box,
+html body .sc,
+html[data-theme="light"] body .card,
+html[data-theme="light"] body .tal-card,
+html[data-theme="light"] body .jdb-item,
+html[data-theme="light"] body .pub-member-item,
+html[data-theme="light"] body .sb-sel-box,
+html[data-theme="light"] body .sc {
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.02),
+    0 1px 3px rgba(0,0,0,.01) !important;
+  border: 1px solid #F3F4F6 !important;
+  background: #FFFFFF !important;
+}
+
+[data-theme="dark"] html body .card,
+[data-theme="dark"] html body .tal-card,
+[data-theme="dark"] html body .jdb-item,
+[data-theme="dark"] html body .pub-member-item,
+[data-theme="dark"] html body .sb-sel-box,
+[data-theme="dark"] html body .sc {
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.20),
+    0 1px 3px rgba(0,0,0,.15) !important;
+  border: 1px solid #334155 !important;
+  background: #1E293B !important;
+}
+
+/* Spacing rhythm: 8px multiples between major sections */
+html body .page > * + * { margin-top: 0 !important; }
+html body .page > .hero { margin-bottom: 16px !important; }
+html body .page > .sg { margin-bottom: 16px !important; }
+html body .page > .alert { margin-bottom: 14px !important; }
+html body .page > .card { margin-bottom: 14px !important; }
+html body .sec-ttl { margin: 24px 0 12px !important; }
+
+/* ── BODY background — clean light gray for premium feel ─────────────── */
+html body,
+html[data-theme="light"] body {
+  background: #F9FAFB !important;
+}
+
+[data-theme="dark"] html body { background: #0F172A !important; }
+</style>
+<style id="v10-1-dark-mode-polish-disabled" data-keep-format-only>
 
 /* ════════════════════════════════════════════════════════════════════════
    v10.4 — KPI cards COMPACT (request user: 'terlalu besar, di buat compack')
