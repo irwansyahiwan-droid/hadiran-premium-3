@@ -30634,6 +30634,252 @@ html[data-theme="light"] body {
 
 [data-theme="dark"] html body { background: #0F172A !important; }
 </style>
+
+<style id="v11-1-mobile-friendly">
+/* ════════════════════════════════════════════════════════════════════════
+   v11.1 — MOBILE FRIENDLY responsive polish
+   ════════════════════════════════════════════════════════════════════════ */
+
+html body .page {
+  max-width: 100% !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+html body .hero {
+  padding: 20px 18px 18px !important;
+  border-radius: 22px !important;
+}
+html body .hero-amt {
+  font-size: clamp(28px, 9vw, 40px) !important;
+  letter-spacing: -1.2px !important;
+}
+html body .hero-rp { font-size: 0.6em !important; }
+html body .hero-ey, html body .hero-label {
+  font-size: 10px !important;
+  letter-spacing: 1.2px !important;
+}
+html body .hero-note {
+  font-size: 11.5px !important;
+  line-height: 1.45 !important;
+}
+
+html body .hero .hero-chips {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 6px !important;
+  margin-top: 10px !important;
+}
+html body .hero .hero-chip {
+  padding: 8px 8px !important;
+  border-radius: 11px !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+}
+html body .hero .hero-chip .chip-ic { font-size: 12px !important; }
+html body .hero .hero-chip .chip-lbl {
+  font-size: 8px !important;
+  letter-spacing: .4px !important;
+}
+html body .hero .hero-chip .chip-val {
+  font-size: clamp(9.5px, 2.6vw, 11.5px) !important;
+  letter-spacing: -.3px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+}
+
+html body .sg.sg3 { gap: 7px !important; }
+html body .sc {
+  padding: 10px 6px !important;
+  border-radius: 14px !important;
+}
+html body .sc .sc-ic {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  margin-bottom: 2px !important;
+}
+html body .sc .sc-val,
+html body .sc.b .sc-val,
+html body .sc.s .sc-val,
+html body .sc.g .sc-val,
+html body .sc.r .sc-val {
+  font-size: clamp(18px, 5.5vw, 22px) !important;
+  letter-spacing: -.5px !important;
+}
+html body .sc .sc-lbl {
+  font-size: 9px !important;
+  letter-spacing: .3px !important;
+}
+
+html body #topbar .tb-in {
+  padding: 10px 14px !important;
+  gap: 8px !important;
+}
+html body #topbar .tb-logo {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+}
+html body #topbar .tb-name { font-size: 14px !important; letter-spacing: -.2px !important; }
+html body #topbar .tb-role { font-size: 10.5px !important; }
+html body #topbar .tb-badge {
+  font-size: 9px !important;
+  padding: 3px 8px !important;
+  letter-spacing: .6px !important;
+}
+html body #topbar .tb-kebab { width: 36px !important; height: 36px !important; }
+html body #topbar .tb-kebab-pop {
+  min-width: 180px !important;
+  max-width: calc(100vw - 28px) !important;
+}
+
+html body #bottomNav {
+  height: 60px !important;
+  padding: 0 6px !important;
+  width: calc(100% - 24px) !important;
+  max-width: 420px !important;
+}
+html body #bottomNav .ni {
+  min-height: 56px !important;
+  padding: 6px 2px 8px !important;
+  gap: 2px !important;
+}
+html body #bottomNav .ni .ni-ico { width: 26px !important; height: 26px !important; }
+html body #bottomNav .ni .ni-ico svg { width: 20px !important; height: 20px !important; }
+html body #bottomNav .ni .ni-lbl { font-size: 9px !important; letter-spacing: .15px !important; }
+html body #bottomNav .ni.on::before {
+  bottom: 4px !important; width: 4px !important; height: 4px !important;
+}
+
+html body .tal-act.tal-act-bayar,
+html body .tal-act.tal-act-edit {
+  min-height: 38px !important;
+  padding: 10px 14px !important;
+  font-size: 12.5px !important;
+}
+html body .save-bar .btn-G {
+  height: 52px !important;
+  font-size: 14px !important;
+  min-height: 52px !important;
+}
+html body .btn-recalc {
+  min-height: 36px !important;
+  padding: 0 12px !important;
+  font-size: 12px !important;
+}
+html body .btn-edit-jd { width: 36px !important; height: 36px !important; }
+html body .krt2-pdf-link,
+html body .kh2-pdf-link,
+html body .pdf-jadwal-btn {
+  padding: 9px 14px !important;
+  font-size: 12px !important;
+  min-height: 36px !important;
+}
+
+html body .card .card-hdr { padding: 12px 14px 10px !important; }
+html body .card .card-hdr-t { font-size: 13px !important; }
+html body .card .card-body { padding: 12px 14px !important; }
+
+html body .tal-card { padding: 10px 12px !important; gap: 10px !important; }
+html body .tal-card .tal-card-name { font-size: 13.5px !important; }
+html body .tal-card .tal-card-meta { font-size: 11px !important; }
+html body .tal-card .tal-card-amt { font-size: 16px !important; letter-spacing: -.2px !important; }
+html body .tal-card .tal-card-av { width: 38px !important; height: 38px !important; }
+
+html body .jdb-item, html body .jd-item.jdb-item {
+  padding: 10px 12px !important; gap: 10px !important;
+}
+html body .jdb-item .jdb-av { width: 42px !important; height: 42px !important; }
+html body .jdb-item .jd-name { font-size: 13.5px !important; }
+html body .jdb-item .jd-tgl { font-size: 11px !important; }
+html body .tag {
+  font-size: 9.5px !important;
+  padding: 4px 8px !important;
+  letter-spacing: .4px !important;
+}
+
+html body .pub-member-item {
+  padding: 10px 12px !important;
+  gap: 10px !important;
+  border-radius: 12px !important;
+}
+html body .pub-member-name { font-size: 13px !important; }
+html body .pub-no-urut { font-size: 11px !important; }
+html body .pub-badge {
+  font-size: 9px !important;
+  padding: 3px 8px !important;
+  letter-spacing: .3px !important;
+}
+
+html body .sb-sel-box { padding: 10px 12px !important; gap: 10px !important; }
+html body .sb-sel-av { width: 36px !important; height: 36px !important; }
+html body .sb-sel-name { font-size: 13.5px !important; }
+html body .sb-sel-note { font-size: 10.5px !important; }
+
+html body .srch { padding: 0 12px !important; border-radius: 13px !important; }
+html body .srch input { font-size: 14px !important; padding: 11px 0 !important; }
+html body .srch .srch-clr { width: 22px !important; height: 22px !important; }
+
+html body .alert {
+  padding: 11px 13px !important;
+  font-size: 12.5px !important;
+  border-radius: 11px !important;
+  gap: 9px !important;
+}
+html body .alert .alert-ic { font-size: 16px !important; }
+
+html body .sec-ttl {
+  font-size: 10.5px !important;
+  letter-spacing: 1px !important;
+  margin: 18px 0 8px !important;
+}
+
+html body .finp {
+  font-size: 14.5px !important;
+  height: 42px !important;
+  padding: 0 13px !important;
+  border-radius: 11px !important;
+}
+
+@media (max-width: 360px) {
+  html body .page { padding-left: 12px !important; padding-right: 12px !important; }
+  html body .hero { padding: 16px 14px 14px !important; }
+  html body .hero-amt { font-size: 26px !important; letter-spacing: -1px !important; }
+  html body .hero .hero-chip .chip-val { font-size: 9.5px !important; }
+  html body .hero .hero-chip .chip-lbl { font-size: 7.5px !important; }
+  html body .sc .sc-val { font-size: 18px !important; }
+  html body .sc .sc-ic { width: 26px !important; height: 26px !important; font-size: 13px !important; }
+  html body #bottomNav { height: 58px !important; width: calc(100% - 16px) !important; }
+  html body #bottomNav .ni .ni-lbl { font-size: 8.5px !important; }
+}
+
+@media (min-width: 600px) {
+  html body .page {
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  html body #bottomNav { max-width: 440px !important; }
+  html body #topbar .tb-in {
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body * {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .05ms !important;
+  }
+}
+</style>
+<style id="v11-1-end-spacer" data-keep-format-only>
+</style>
 <style id="v10-1-dark-mode-polish-disabled" data-keep-format-only>
 
 /* ════════════════════════════════════════════════════════════════════════
